@@ -6,6 +6,8 @@ datasets = [#["DYJetsToLL_VBFfilter_2017", "DYJetsToLL_VBFfilter_2017"]
             #["DYJetsToLL_VBFfilter_2016","DYJetsToLL_VBFfilter_2016"]
             #["DYJetsToLL","DYJetsToLL"]
     #["DYJetsToLL_M105To160_incl_2017", "DYJetsToLL_M105To160_incl_2017"]
+    #["DYJetsToLL_M105To160_incl_2018", "DYJetsToLL_M105To160_incl_2018"]
+    #["DYJetsToLL_M105To160_incl_2016", "DYJetsToLL_M105To160_incl_2016"]
     #["DYJetsToLL_2017", "DYJetsToLL_2017"]                                                                                                                                     
     #["DYJetsToLL_2018","DYJetsToLL_2018"]                                                                                                                                     
     #["DYJetsToLL_2016","DYJetsToLL_2016"] 
@@ -53,7 +55,8 @@ datasets = [#["DYJetsToLL_VBFfilter_2017", "DYJetsToLL_VBFfilter_2017"]
             #["WWTo2L2Nu_2018","WWTo2L2Nu_2018"]
             #["WWToLNuQQ_2018","WWToLNuQQ_2018"]
             #["WWW_4F_2018","WWW_4F_2018"]
-            #["WZZ_2018","WZZ_2018"]
+    #["WWZ_4F_2018","WWZ_4F_2018"] 
+    #["WZZ_2018","WZZ_2018"]
     #["ZZZ_2018","ZZZ_2018"]
     #["WZTo3LNu_2017","WZTo3LNu_2017"]
             #["WZTo2L2Q_2017","WZTo2L2Q_2017"]
@@ -66,15 +69,15 @@ datasets = [#["DYJetsToLL_VBFfilter_2017", "DYJetsToLL_VBFfilter_2017"]
     #["TTZToLLNuNu_2017","TTZToLLNuNu_2017"]
     #["TTWJetsToLNu_2017","TTWJetsToLNu_2017"]
     #["TTZToLLNuNu_2018","TTZToLLNuNu_2018"]
-            #["TTWJetsToLNu_2018","TTWJetsToLNu_2018"]
+    #["TTWJetsToLNu_2018","TTWJetsToLNu_2018"]
     #["TTZToLLNuNu_2016","TTZToLLNuNu_2016"]
-            #["TTWJetsToLNu_2016","TTWJetsToLNu_2016"]
+    #["TTWJetsToLNu_2016","TTWJetsToLNu_2016"]
     #["ZZTo4L_2016","ZZTo4L_2016"]
     #["ZZTo2L2Q_2016","ZZTo2L2Q_2016"]
     #["ZZTo2L2Nu_2016","ZZTo2L2Nu_2016"]
     #["ZZTo4L_2017","ZZTo4L_2017"]
     #["ZZTo2L2Q_2017","ZZTo2L2Q_2017"]
-    ["ZZTo2L2Nu_2017","ZZTo2L2Nu_2017"]
+    #["ZZTo2L2Nu_2017","ZZTo2L2Nu_2017"]
     #["ZZTo4L_2018","ZZTo4L_2018"]
     #["ZZTo2L2Q_2018","ZZTo2L2Q_2018"]
     #["ZZTo2L2Nu_2018","ZZTo2L2Nu_2018"]
@@ -113,6 +116,22 @@ for data in datasets:
     elif ( data[0]=="DYJetsToLL_M105To160_incl_2017"):
         dataname = "DYJetsToLL_M105To160_incl_2017"
         inputfname = "DYJetsToLL_M105To160_incl_2017.txt"
+        with open(inputfname) as inputfile:
+            readFiles = inputfile.readlines()
+            print "len(readFiles)", len(readFiles)
+        NSections = 1
+
+    elif ( data[0]=="DYJetsToLL_M105To160_incl_2016"):
+        dataname = "DYJetsToLL_M105To160_incl_2016"
+        inputfname = "DYJetsToLL_M105To160_incl_2016.txt"
+        with open(inputfname) as inputfile:
+            readFiles = inputfile.readlines()
+            print "len(readFiles)", len(readFiles)
+        NSections = 1
+
+    elif ( data[0]=="DYJetsToLL_M105To160_incl_2018"):
+        dataname = "DYJetsToLL_M105To160_incl_2018"
+        inputfname = "DYJetsToLL_M105To160_incl_2018.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -592,6 +611,13 @@ for data in datasets:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
+    elif ( data[0]=="WWZ_4F_2018"):
+        dataname = "WWZ_4F_2018"
+        inputfname = "WWZ_4F_2018.txt"
+        with open(inputfname) as inputfile:
+            readFiles = inputfile.readlines()
+            print "len(readFiles)", len(readFiles)
+            NSections = 10
 
     elif ( data[0]=="WZZ_2017"):
         dataname = "WZZ_2017"

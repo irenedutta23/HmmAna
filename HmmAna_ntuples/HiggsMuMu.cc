@@ -30,55 +30,55 @@ int main(int argc, char* argv[])
   double lumi_16 = 35.9*1000.;
   proc_scale["VBFHToMuMu_2017"]=0.000823*lumi/5913454.85352;
   proc_scale["VBFHToMuMu_2018"]=0.000823*lumi_18/3858502.5;
-  proc_scale["VBFHToMuMu_2016"]=0.000823*lumi_16/3734816.75;
+  proc_scale["VBFHToMuMu_2016"]=0.000823*lumi_16/8342013.06055;
   proc_scale["ZH_2018"]=0.000192*lumi_18/379921.21875;
   proc_scale["WplusH_2018"]=0.000183*lumi_18/260275.25;
   proc_scale["WminusH_2018"]=0.000116*lumi_18/162347.503906;
-  proc_scale["ZH_2016"]=0.000192*lumi_16/188012.164062;
-  proc_scale["WplusH_2016"]=0.000183*lumi_16/105908.515625;
-  proc_scale["WminusH_2016"]=0.000116*lumi_16/66702.0078125;
+  proc_scale["ZH_2016"]=0.000192*lumi_16/413010.311768;
+  proc_scale["WplusH_2016"]=0.000183*lumi_16/360018.046387;//105908.515625;
+  proc_scale["WminusH_2016"]=0.000116*lumi_16/158522.949219;//66702.0078125;
   proc_scale["ttH_2018"]=0.000110*lumi_18/250980.332031;
   proc_scale["ZH_2017"]=0.000192*lumi/234457.452209;
   proc_scale["WplusH_2017"]=0.000183*lumi/260182.667969;
   proc_scale["WminusH_2017"]=0.000116*lumi/162194.871094;
   proc_scale["ttH_2017"]=0.000110*lumi/155117.609375;
-  proc_scale["ttH_2016"]=0.000110*lumi_16/258860.732483;
+  proc_scale["ttH_2016"]=0.000110*lumi_16/258743.374512;//258860.732483;
   proc_scale["DYJetsToLL"]=6225.42*lumi/(3258462550016.0+492179082112.0);
-  proc_scale["DYJetsToLL_VBFfilter_2018"]=2.02*lumi_18/(3355073909.5);
+  proc_scale["DYJetsToLL_VBFfilter_2018"]=2.02*lumi_18/3173402777.5;//(3355073909.5);
   proc_scale["DYJetsToLL_VBFfilter_2017"]=2.02*lumi/(2259008890.6);
-  proc_scale["DYJetsToLL_VBFfilter_2016"]=2.02*lumi_16/(2699711552.0);
-  proc_scale["DYJetsToLL_M105To160_incl_2018"]=46.9479*lumi_18/(3355073909.5);
+  proc_scale["DYJetsToLL_VBFfilter_2016"]=2.02*lumi_16/2569045355.250000000;//2570758278.5;
+  proc_scale["DYJetsToLL_M105To160_incl_2018"]=46.9479*lumi_18/292139596.5;//(3355073909.5);
   proc_scale["DYJetsToLL_M105To160_incl_2017"]=46.9479*lumi/(7139863856.25);
-  proc_scale["DYJetsToLL_M105To160_incl_2016"]=46.9479*lumi_16/(2699711552.0);
+  proc_scale["DYJetsToLL_M105To160_incl_2016"]=46.9479*lumi_16/7223964604.28;//(2699711552.0);
   proc_scale["ttTosemileptonic"]=6.871e+02*lumi/11784986264.000000;
   proc_scale["ttsl_2018"]=6.871e+02*lumi_18/29967356136.0;
   proc_scale["ttTo2l2v_2018"]=87.31*lumi_18/4600510308.0;
   proc_scale["ttsl_2017"]=6.871e+02*lumi/12941416132.0;
   proc_scale["ttTo2l2v_2017"]=87.31*lumi/5593093066.0;
   //proc_scale["ttsl_2016"]=6.871e+02*lumi_16/12941416132.0;
-  proc_scale["ttTo2l2v_2016"]=87.31*lumi_16/64203460.0;
-  proc_scale["ttsl_2016"]=6.871e+02*lumi_16/29967356136.0; // using 2018 samples with 2016 lumi
-  proc_scale["ttJets_DiLept_2018"]=85.656*lumi_18/ 287030939.5;
+  proc_scale["ttTo2l2v_2016"]=87.31*lumi_16/78969520.000000000;//64203460.0;
+  proc_scale["ttsl_2016"]=6.871e+02*lumi_16/150930664.0;
+  proc_scale["ttJets_DiLept_2018"]=85.656*lumi_18/28671097.0469;// 287030939.5;
   proc_scale["ttJets_DiLept_2017"]=85.656*lumi/28349068.0;
   proc_scale["ttJets_DiLept_2016"]=85.656*lumi_16/24622652.0;
-  proc_scale["EWK_2016"]=1.608*lumi_16/1596200.0;
+  proc_scale["EWK_2016"]=1.608*lumi_16/1576200.0;
   proc_scale["EWK_2017"]=1.608*lumi/3676958.2182;//3678099.0;
-  proc_scale["EWK_2018"]=1.608*lumi_18/1978878.0;
+  proc_scale["EWK_2018"]=1.608*lumi_18/1978654.78125;//1978878.0;
   proc_scale["ggH_2018"]=0.009605*lumi_18/216906552.0;
   proc_scale["ggH_2017"]=0.009605*lumi/381714429.875;
-  proc_scale["ggH_2016"]=0.009605*lumi_16/58565928.4755;
+  proc_scale["ggH_2016"]=0.009605*lumi_16/996618.0;//58565928.4755;
   proc_scale["ttTo2l2v"]=85.656*lumi/(623402174.0+4782395097.687500+199762.000000);
   proc_scale["TTTo2L"]=85.656*lumi/(623402174.0+4782395097.687500);
   proc_scale["WZTo1L1Nu2Q"]=1.161e+01*lumi/352741934.218750;
-  proc_scale["WZTo3LNu_2016"]=4.42965*lumi_16/95696911.5444;
-  proc_scale["WZTo2L2Q_2016"]=5.595*lumi_16/211724236.125;
+  proc_scale["WZTo3LNu_2016"]=4.42965*lumi_16/97457043.1172;//95696911.5444;
+  proc_scale["WZTo2L2Q_2016"]=5.595*lumi_16/76043637.625;//211724236.125;
   proc_scale["WZTo3LNu_2017"]=4.42965*lumi/4571207.61914;
   proc_scale["WZTo2L2Q_2017"]=5.595*lumi/266683248.0;
-  proc_scale["WZTo3LNu_2018"]=4.42965*lumi_18/9218653.66309;
+  proc_scale["WZTo3LNu_2018"]=4.42965*lumi_18/187398698.125;//9218653.66309;
   proc_scale["WZTo2L2Q_2018"]=5.595*lumi_18/253329022.092;
-  proc_scale["ZZTo4L_2016"]=1.256*lumi_16/5728400.0;
+  proc_scale["ZZTo4L_2016"]=1.256*lumi_16/82474616.0;//5728400.0;
   proc_scale["ZZTo2L2Q_2016"]=3.22*lumi_16/496436.0;
-  proc_scale["ZZTo2L2Nu_2016"]=0.564*lumi_16/7530975.0;
+  proc_scale["ZZTo2L2Nu_2016"]=0.564*lumi_16/8931750.0;//7530975.0;
   proc_scale["ZZTo4L_2017"]=1.256*lumi/159446233.461;
   proc_scale["ZZTo2L2Q_2017"]=3.22*lumi/157683326.25;
   proc_scale["ZZTo2L2Nu_2017"]=0.564*lumi/5303017.48047;
@@ -86,34 +86,34 @@ int main(int argc, char* argv[])
   proc_scale["ZZTo2L2Q_2018"]=3.22*lumi_18/157419820.886;
   proc_scale["ZZTo2L2Nu_2018"]=0.564*lumi_18/5097461.55273;
   
-  proc_scale["WWTo2L2Nu_2016"]=12.46*lumi_16/1578014.0;
+  proc_scale["WWTo2L2Nu_2016"]=12.46*lumi_16/1999000.0;//1578014.0;
   proc_scale["WWToLNuQQ_2016"]=4.599e+01*lumi_16/1999200.0;
   proc_scale["WWTo2L2Nu_2017"]=12.46*lumi/43938136.25;
   proc_scale["WWToLNuQQ_2017"]=4.599e+01*lumi/1285749509.5;
   proc_scale["WWTo2L2Nu_2018"]=12.46*lumi_18/85338022.0947;
   proc_scale["WWToLNuQQ_2018"]=4.599e+01*lumi_18/643636627.5;
-  proc_scale["WWW_4F_2016"]=0.2086*lumi_16/50040.8632812;
-  proc_scale["WZZ_2016"]=0.05565*lumi_16/11341.4560547;
-  proc_scale["ZZZ_2016"]=0.01398*lumi_16/3500.18438721;
+  proc_scale["WWW_4F_2016"]=0.2086*lumi_16/50012.1679688;//50040.8632812;
+  proc_scale["WZZ_2016"]=0.05565*lumi_16/13735.4013062;//11341.4560547;
+  proc_scale["ZZZ_2016"]=0.01398*lumi_16/3499.77664185;//3500.18438721;
   proc_scale["WWW_4F_2017"]=0.2086*lumi/49913.048584;
   proc_scale["WZZ_2017"]=0.05565*lumi/13943.3115234;
   proc_scale["ZZZ_2017"]=0.01398*lumi/3676.50537109;
   proc_scale["WWZ_4F_2017"]=0.1651*lumi/41844.3398438;
   proc_scale["WWW_4F_2018"]=0.2086*lumi_18/51529.8018799;
   proc_scale["WZZ_2018"]=0.05565*lumi_18/14236.171875;
-  proc_scale["ZZZ_2018"]=0.01398*lumi_18/3683.33010101;
-  //proc_scale["WWZ_4F"]=0.1651*lumi/41205.3044434;
+  proc_scale["ZZZ_2018"]=0.01398*lumi_18/7366.66020203;//3683.33010101;
+  proc_scale["WWZ_4F_2018"]=0.1651*lumi/41737.7509766;
   proc_scale["DYJetsToLL_2017"]=5765.4*lumi/3.74020946509e+12;
-  proc_scale["DYJetsToLL_2018"]=5765.4*lumi_18/17846205568.0;
-  proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1.8938682816e+12;
+  proc_scale["DYJetsToLL_2018"]=5765.4*lumi_18/2.83840120718e+12;//100113543.375;//17846205568.0;
+  proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1.78186974566e+12;//1.8938682816e+12;
   proc_scale["DYJetsToLL_ext"]=5765.4*lumi/3258462550016.0;
   proc_scale["DYJetsToLL_small"]=5765.4*lumi/492179082112.0;
   proc_scale["TTTo2L_small"]=85.656*lumi/623402174.0;
   proc_scale["TTTo2L2Nu_TuneCP5_PSweights"]=85.656*lumi/4782395097.687500;
   proc_scale["TTZToLLNuNu_2017"]=0.2529*lumi/1837346.4375;
   proc_scale["TTWJetsToLNu_2017"]=0.2001*lumi/1680699.34375;
-  proc_scale["TTZToLLNuNu_2016"]=0.2529*lumi_16/311305.135864;
-  proc_scale["TTWJetsToLNu_2016"]=0.2001*lumi_16/731611.457031;
+  proc_scale["TTZToLLNuNu_2016"]=0.2529*lumi_16/1473794.00171;
+  proc_scale["TTWJetsToLNu_2016"]=0.2001*lumi_16/1786523.84839;
   proc_scale["TTZToLLNuNu_2018"]=0.2529*lumi_18/3231284.61328;
   proc_scale["TTWJetsToLNu_2018"]=0.2001*lumi_18/1689122.54346;
   proc_scale["DY0J"]=5409.0*lumi/525496638080.000000;
@@ -245,6 +245,12 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       TString s1 = "DYJetsToLL_M105To160_incl_2017" ;
       TString s2 = "DYJetsToLL_M105To160_incl_2016" ;
       TString s3 = "DYJetsToLL_M105To160_incl_2018" ;
+      TString s4 = "DYJetsToLL_2017" ;
+      TString s5 = "DYJetsToLL_2018" ;
+      TString s6 = "DYJetsToLL_2016" ;
+      TString s7 = "DYJetsToLL_VBFfilter_2017" ;
+      TString s8 = "DYJetsToLL_VBFfilter_2018" ;
+      TString s9 = "DYJetsToLL_VBFfilter_2016" ;
       if (procname == s1 || procname == s2 || procname == s3){
 	//cout<<"Entering!!!!\n";
 	if(t_GenJet_pt->size() >= 2){
@@ -341,13 +347,27 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 	    
 	    evt_wt*=lepSF;
 	    //cout<<evt_wt<<" , "<<t_puWeight<<" , "<<t_puWeightUp<<" , "<<t_puWeightDown<<" , "<<t_PrefireWeight<<" , "<<t_PrefireWeight_Up<<" , "<<t_PrefireWeight_Down<<endl;
-	    
+	    //float Zpt_wt=[0.917546,1.13498,1.10698,1.00733,0.988926,0.94014,0.877661,0.973725,0.998119,0.908338,0.984567,0.868319];
+	    if(procname == s3  || procname == s5 || procname == s8 || procname == s1  || procname == s2 || procname == s4 ||procname == s6  || procname == s7 || procname == s9 ){
+	      if(diMuon_pt<10.)evt_wt*=0.910385;
+	      else if(diMuon_pt<20.)evt_wt*=1.13543;
+	      else if(diMuon_pt<30.)evt_wt*=1.10441;
+	      else if(diMuon_pt<40.)evt_wt*=1.01315;
+	      else if(diMuon_pt<50.)evt_wt*=0.982598;
+	      else if(diMuon_pt<60.)evt_wt*=0.980697;
+	      else if(diMuon_pt<70.)evt_wt*= 0.972673;
+	      else if(diMuon_pt<80.)evt_wt*=0.972325;
+	      else if(diMuon_pt<100.)evt_wt*=0.966127;
+	      else if(diMuon_pt<150.)evt_wt*=0.953262;
+	      else if(diMuon_pt<200.)evt_wt*= 0.933403;
+	      else if(diMuon_pt<1000.)evt_wt*=0.904518;
+	    }
 	    evt_wt*=t_puWeight;
 	    evt_wt*=t_PrefireWeight;
 	    
 	    evt_wt_Up=evt_wt*t_puWeightUp*t_PrefireWeight_Up;
 	    evt_wt_Down=evt_wt*t_puWeightDown*t_PrefireWeight_Down;
-	    }
+	  }
           catyield->SetBinContent(10,binv);
           h_diMuon_mass_cat->Fill(diMuon_mass,evt_wt);
           run  =  t_run;
@@ -433,7 +453,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 		  }
               }
               cattree->Fill();
-	  }
+	  } // b -jet requirement on ttH cat only
           //ZH mm
           else if(mu.size()>1){
               bool isOS=false;
