@@ -31,8 +31,11 @@ from keras.callbacks import ModelCheckpoint
 # In[2]:
 
 
-variables = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj','pt_mmjj','eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj'
-                                   ,'dRmin_mmj','dRmax_mmj','dPhijj','leadingJet_pt','subleadingJet_pt',
+variables = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj',
+             #'pt_mmjj',
+             'eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj'
+                                   ,'dRmin_mmj','dRmax_mmj',#'dPhijj',
+             'leadingJet_pt','subleadingJet_pt',
                                    'leadingJet_eta','subleadingJet_eta','leadingJet_qgl','subleadingJet_qgl','cthetaCS','Higgs_pt','Higgs_eta']#,'Higgs_mass' ]
 mass_var=['Higgs_mass']
 id_variables = ['run','lumi','event']
@@ -46,7 +49,7 @@ def convert(tree, target=0):
     feature = tree2array(tree,
                         branches = variables+mass_var+id_variables+wt_variables ,
                         #branches = variables,
-                         selection = 'cat_index==7')
+                         selection = 'cat_index==7 && Higgs_mass>110. && Higgs_mass < 150.')
     if target == 0:
         label = np.zeros(shape = feature.shape, dtype=[('label','f4')])
     else:
@@ -64,7 +67,7 @@ def convert_data(tree):
     feature = tree2array(tree,
                         branches = variables+mass_var+id_variables+wt_variables ,
                         #branches = variables,
-                         selection = 'cat_index==7 && (Higgs_mass>130. || Higgs_mass<120.)')
+                         selection = 'cat_index==7 && Higgs_mass>110. && Higgs_mass < 150. && (Higgs_mass>130. || Higgs_mass<120.)')
     return feature
 
 
@@ -91,8 +94,7 @@ def get_disc_or_minusone(event, disc_lookup):
 
 # In[10]:
 
-
-def fill_discriminator(oldTree, newTree, disc_lookup, disc_lookup_adv, final_evt_weight,s,s_adv,s_wt):
+def fill_discriminator(oldTree, newTree, disc_lookup, disc_lookup_adv,final_evt_weight,s,s_adv,s_wt):
     """
     Args:
         oldTree: tree from the input ROOT file
@@ -112,9 +114,6 @@ def fill_discriminator(oldTree, newTree, disc_lookup, disc_lookup_adv, final_evt
         s_adv.disc_advNN = get_disc_or_minusone(oldTree, disc_lookup_adv)
         s_wt.evt_wt = get_disc_or_minusone(oldTree,final_evt_weight )
         newTree.Fill()
-
-
-# In[11]:
 
 
 def output_file(y_pred_cls,y_pred_adv_cls,evt_weight, y_test, z_test,x_test_index,SIGNAL_FILE,sigtree,BKG_FILE_2018,bkgtree3,alpha_str):
@@ -215,7 +214,7 @@ def output_file(y_pred_cls,y_pred_adv_cls,evt_weight, y_test, z_test,x_test_inde
 
 
 def make_cls_model(inp, b_norm = False, n_hidden = 1, hidden= 100, do = 0.2):
-    i = Input((28,), name='features')
+    i = Input((26,), name='features')
     di = i
     for h in range(n_hidden):
         d = Dense(hidden, name='hidden_%d'%h, activation='tanh')(di)

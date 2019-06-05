@@ -34,8 +34,10 @@ except:
 import advTrain_2018_defFunc
 
 print(keras.__version__)
-variables = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj','pt_mmjj','eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj'
-                                   ,'dRmin_mmj','dRmax_mmj','dPhijj','leadingJet_pt','subleadingJet_pt',
+variables = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj',#'pt_mmjj',
+             'eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj'
+                                   ,'dRmin_mmj','dRmax_mmj',#'dPhijj',
+             'leadingJet_pt','subleadingJet_pt',
                                    'leadingJet_eta','subleadingJet_eta','leadingJet_qgl','subleadingJet_qgl','cthetaCS','Higgs_pt','Higgs_eta']#,'Higgs_mass' ]
 mass_var=['Higgs_mass']
 id_variables = ['run','lumi','event']
@@ -58,8 +60,10 @@ var_indices = [sig_frame0.columns.get_loc(v) for v in variables] # get positions
 mass_indices = [sig_frame0.columns.get_loc(v) for v in mass_var]
 id_var_indices = [sig_frame0.columns.get_loc(v) for v in id_variables]
 wt_var_indices = [sig_frame0.columns.get_loc(v) for v in wt_variables]
-'''
-HLF = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj','pt_mmjj','eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj','dRmin_mmj','dRmax_mmj','dPhijj',
+
+
+HLF = ['softJet5','dRmm','dEtamm','dPhimm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj',#'pt_mmjj',
+       'eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj','dRmin_mmj','dRmax_mmj',#'dPhijj',
         'leadingJet_pt','subleadingJet_pt','leadingJet_eta','subleadingJet_eta','leadingJet_qgl','subleadingJet_qgl','cthetaCS','Higgs_pt',
         'Higgs_eta','Higgs_mass']
 xlabel_HLF= ['Number of EWK jets ($p_{T}$ > 5 GeV)','$\Delta R(\mu \mu)$','$\Delta \eta(\mu \mu)$','$\Delta \phi(\mu \mu)$','$M_{jj} (GeV)$','$p_{T}$ (jj) (GeV)','$\eta_{jj}$','$\phi_{jj}$','$M_{\mu\mu + jj}$ (GeV)','$p_{T} (\mu\mu + jj) $ (Gev)','$\eta_{\mu\mu + jj}$','$\phi_{\mu\mu + jj}$','$\Delta \eta(jj)$','Zeppenfeld Variable','Min $\Delta R(\mu j)$ ', 'Max $\Delta R(\mu j)$','Min $\Delta R(\mu \mu j)$','Max $\Delta R(\mu \mu j)$','$\Delta \phi(jj)$',
@@ -73,7 +77,7 @@ for hlf,xlabel_hlf in zip(HLF,xlabel_HLF):
     plt.ylabel('Events (Normalized to unity)')
     plt.legend(loc='best')
     plt.savefig("/bigdata/shared/idutta/Higgs_plots/SigBkgCompare_"+hlf+".png")
-'''
+
 # Standardize only the actual variables not event ID or genweights
 x_mean_sig0 = (sig_frame0.loc[:,variables]).mean()
 x_std_sig0 = (sig_frame0.loc[:,variables]).std()
@@ -276,7 +280,7 @@ m = advTrain_2018_defFunc.make_cls_model((x_train_reduced.shape[1],),True, 5, 10
 m.compile(loss='binary_crossentropy', optimizer='adam',metrics=['accuracy'])
 h = advTrain_2018_defFunc.fit_cls_model(m, x_train_reduced,y_train, x_train_wt.ravel(),10000)
 
-#advTrain_2018_defFunc.show_losses( [("VBF entropy", h)] )
+advTrain_2018_defFunc.show_losses( [("VBF entropy", h)] )
 
 
 
