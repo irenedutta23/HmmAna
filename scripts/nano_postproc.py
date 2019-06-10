@@ -9,6 +9,7 @@ import argparse
 #load the NanoAOD tools
 from PhysicsTools.NanoAODTools.postprocessing.framework.postprocessor import PostProcessor
 from PhysicsTools.NanoAODTools.postprocessing.modules.common.puWeightProducer import puWeightProducer
+from PhysicsTools.NanoAODTools.postprocessing.modules.jme.jetmetUncertainties import jetmetUncertainties2016All, jetmetUncertainties2017All, jetmetUncertainties2018All
 
 def parse_args():
     parser = argparse.ArgumentParser(description='Do NanoAOD post-processing by computing PU weights etc on the given NanoAOD MC files')
@@ -39,6 +40,13 @@ pileup_files_data = {
     "2018": "RunII_2018_data.root", 
 }
 
+
+jetmet_uncertainties = {
+    "2016": jetmetUncertainties2016All, 
+    "2017": jetmetUncertainties2017All, 
+    "2018": jetmetUncertainties2018All
+}
+
 def main(args):
 
     #where to find our user-generated data PU files
@@ -46,9 +54,9 @@ def main(args):
 
     #configure the puWeightProducer to extract the MC distribution directly from the current NanoAOD file ("auto")
     puAutoWeight = lambda : puWeightProducer("auto", os.path.join(datadir, "pileup", pileup_files_data[args.data_period]), "pu_mc", "pileup", verbose=True)
-    
+   
     #book all the different things we want to compute in the postprocessor
-    modules = [puAutoWeight()]
+    modules = [puAutoWeight(), jetmet_uncertainties[args.data_period]()]
     
     #friend: if True, create a new tree that contains *only* the output weights, without copying all the inputs. Much faster.
     p=PostProcessor(args.outdir, args.input_files, friend=True, modules=modules)
