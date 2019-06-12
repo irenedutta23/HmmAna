@@ -64,9 +64,9 @@ int main(int argc, char* argv[])
   proc_scale["EWK_2016"]=1.608*lumi_16/1576200.0;
   proc_scale["EWK_2017"]=1.608*lumi/3676958.2182;//3678099.0;
   proc_scale["EWK_2018"]=1.608*lumi_18/1978654.78125;//1978878.0;
-  proc_scale["ggH_2018"]=0.009605*lumi_18/216906552.0;
-  proc_scale["ggH_2017"]=0.009605*lumi/381714429.875;
-  proc_scale["ggH_2016"]=0.009605*lumi_16/996618.0;//58565928.4755;
+  proc_scale["ggH_2018"]=0.010571*lumi_18/216906552.0;
+  proc_scale["ggH_2017"]=0.010571*lumi/381714429.875;
+  proc_scale["ggH_2016"]=0.010571*lumi_16/996618.0;//58565928.4755;
   proc_scale["ttTo2l2v"]=85.656*lumi/(623402174.0+4782395097.687500+199762.000000);
   proc_scale["TTTo2L"]=85.656*lumi/(623402174.0+4782395097.687500);
   proc_scale["WZTo1L1Nu2Q"]=1.161e+01*lumi/352741934.218750;
@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
   proc_scale["WWZ_4F_2018"]=0.1651*lumi/41737.7509766;
   proc_scale["DYJetsToLL_2017"]=5765.4*lumi/3.74020946509e+12;
   proc_scale["DYJetsToLL_2018"]=5765.4*lumi_18/2.83840120718e+12;//100113543.375;//17846205568.0;
-  proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1.78186974566e+12;//1.8938682816e+12;
+  proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1856607046400.000000000;//1.8938682816e+12;
   proc_scale["DYJetsToLL_ext"]=5765.4*lumi/3258462550016.0;
   proc_scale["DYJetsToLL_small"]=5765.4*lumi/492179082112.0;
   proc_scale["TTTo2L_small"]=85.656*lumi/623402174.0;
@@ -348,7 +348,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 	    evt_wt*=lepSF;
 	    //cout<<evt_wt<<" , "<<t_puWeight<<" , "<<t_puWeightUp<<" , "<<t_puWeightDown<<" , "<<t_PrefireWeight<<" , "<<t_PrefireWeight_Up<<" , "<<t_PrefireWeight_Down<<endl;
 	    //float Zpt_wt=[0.917546,1.13498,1.10698,1.00733,0.988926,0.94014,0.877661,0.973725,0.998119,0.908338,0.984567,0.868319];
-	    if(procname == s3  || procname == s5 || procname == s8 || procname == s1  || procname == s2 || procname == s4 ||procname == s6  || procname == s7 || procname == s9 ){
+	    if(procname == s3  || procname == s5 || procname == s8 || procname == s1  ||  procname == s4   || procname == s7  ){
 	      if(diMuon_pt<10.)evt_wt*=0.910385;
 	      else if(diMuon_pt<20.)evt_wt*=1.13543;
 	      else if(diMuon_pt<30.)evt_wt*=1.10441;
@@ -361,6 +361,20 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 	      else if(diMuon_pt<150.)evt_wt*=0.953262;
 	      else if(diMuon_pt<200.)evt_wt*= 0.933403;
 	      else if(diMuon_pt<1000.)evt_wt*=0.904518;
+	    }
+	    if(procname == s2  || procname == s6 || procname == s9){
+	      if(diMuon_pt<10.)evt_wt*=1.05817;
+              else if(diMuon_pt<20.)evt_wt*=0.994488;
+              else if(diMuon_pt<30.)evt_wt*=0.930056;
+              else if(diMuon_pt<40.)evt_wt*=0.925206;
+              else if(diMuon_pt<50.)evt_wt*=0.946403;
+              else if(diMuon_pt<60.)evt_wt*=0.962136;
+              else if(diMuon_pt<70.)evt_wt*= 0.965316;
+              else if(diMuon_pt<80.)evt_wt*=0.978209;
+              else if(diMuon_pt<100.)evt_wt*=0.988761;
+              else if(diMuon_pt<150.)evt_wt*=0.982497;
+              else if(diMuon_pt<200.)evt_wt*= 0.971749;
+              else if(diMuon_pt<1000.)evt_wt*=0.914429;
 	    }
 	    evt_wt*=t_puWeight;
 	    evt_wt*=t_PrefireWeight;
