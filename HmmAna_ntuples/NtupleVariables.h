@@ -37,8 +37,9 @@ public :
    Int_t   GetEntry(Long64_t entry, Int_t getall = 0) { return fChain ? fChain->GetTree()->GetEntry(entry, getall) : 0; }
    double  DeltaPhi(double, double);
    double  DeltaR(double eta1, double phi1, double eta2, double phi2);
-   int     FindMom(double dau,double mom,int i);
    double  HT (std::vector<TLorentzVector>);
+   std::pair<double,double> helicityAngles( TLorentzVector v1, TLorentzVector v2 );
+   std::pair<double,double> CSAngles( TLorentzVector v1, TLorentzVector v2, int charge);
    TLorentzVector MHT(std::vector<TLorentzVector>);
    
    // void LeptHist(TH1D *h[20],const char *leptype, int Zcut);
@@ -87,9 +88,9 @@ public :
    vector<float>   *t_Mu_EffSF_TRIG;
    vector<float>   *t_Mu_EffSFErr_TRIG;
    vector<float>   *t_Mu_EffSF_ID;
-   vector<float>   *t_Mu_EffSFErr_ID;
+   //vector<float>   *t_Mu_EffSFErr_ID;
    vector<float>   *t_Mu_EffSF_ISO;
-   vector<float>   *t_Mu_EffSFErr_ISO; 
+   //vector<float>   *t_Mu_EffSFErr_ISO; 
    vector<float>   *t_Mu_pt;
    vector<float>   *t_Mu_ptErr;
    vector<float>   *t_Mu_phi;
@@ -150,7 +151,6 @@ public :
    vector<float>   *t_SubJet_tau2;
    vector<float>   *t_SubJet_tau3;
    vector<float>   *t_SubJet_tau4;
-   Int_t           t_SoftActivityJetNjets5;
    Int_t           t_nJet;
    vector<float>   *t_Jet_area;
    vector<float>   *t_Jet_btagCMVA;
@@ -172,7 +172,6 @@ public :
    vector<int>     *t_Jet_nElectrons;
    vector<int>     *t_Jet_nMuons;
    vector<int>     *t_Jet_puId;
-   
    Float_t         t_diJet_pt;
    Float_t         t_diJet_eta;
    Float_t         t_diJet_phi;
@@ -198,9 +197,9 @@ public :
    vector<int>     *t_bJet_nElectrons;
    vector<int>     *t_bJet_nMuons;
    vector<int>     *t_bJet_puId;
-   vector<double>  *t_bJet_SF;
-   vector<double>  *t_bJet_SFup;
-   vector<double>  *t_bJet_SFdown;
+   vector<double>   *t_bJet_SF;
+   vector<double>   *t_bJet_SFup;
+   vector<double>   *t_bJet_SFdown;
 
    Float_t         t_PV_ndof;
    Float_t         t_PV_x;
@@ -208,10 +207,6 @@ public :
    Float_t         t_PV_z;
    Int_t           t_PV_npvs;
    Int_t           t_PV_npvsGood;
-   vector<float>   *t_GenJet_eta;
-   vector<float>   *t_GenJet_mass;
-   vector<float>   *t_GenJet_phi;
-   vector<float>   *t_GenJet_pt;
    vector<float>   *t_GenPart_eta;
    vector<float>   *t_GenPart_mass;
    vector<float>   *t_GenPart_phi;
@@ -219,21 +214,26 @@ public :
    vector<int>     *t_GenPart_genPartIdxMother;
    vector<int>     *t_GenPart_pdgId;
    vector<int>     *t_GenPart_status;
-
+   Int_t           t_SoftActivityJetNjets5;
+   vector<float>   *t_GenJet_eta;
+   vector<float>   *t_GenJet_mass;
+   vector<float>   *t_GenJet_phi;
+   vector<float>   *t_GenJet_pt;
+    
    // List of branches
    TBranch        *b_t_run;   //!
    TBranch        *b_t_luminosityBlock;   //!
    TBranch        *b_t_event;   //!
    TBranch        *b_t_genWeight;   //!
-   TBranch        *b_t_mu1;   //!
-   TBranch        *b_t_mu2;   //!
-   TBranch        *b_t_index_trigm_mu;
    TBranch        *b_t_puWeight;
    TBranch        *b_t_puWeightUp;
    TBranch        *b_t_puWeightDown;
    TBranch        *b_t_PrefireWeight;
    TBranch        *b_t_PrefireWeight_Up;
    TBranch        *b_t_PrefireWeight_Down;
+   TBranch        *b_t_mu1;   //!
+   TBranch        *b_t_mu2;   //!
+   TBranch        *b_t_index_trigm_mu;
    TBranch        *b_t_El_charge;   //!
    TBranch        *b_t_El_pt;   //!
    TBranch        *b_t_El_phi;   //!
@@ -260,9 +260,9 @@ public :
    TBranch        *b_t_Mu_EffSF_TRIG;
    TBranch        *b_t_Mu_EffSFErr_TRIG;
    TBranch        *b_t_Mu_EffSF_ID;
-   TBranch        *b_t_Mu_EffSFErr_ID;
+   //TBranch        *b_t_Mu_EffSFErr_ID;
    TBranch        *b_t_Mu_EffSF_ISO;
-   TBranch        *b_t_Mu_EffSFErr_ISO;
+   //TBranch        *b_t_Mu_EffSFErr_ISO;
    TBranch        *b_t_Mu_pt;   //!
    TBranch        *b_t_Mu_ptErr;   //!
    TBranch        *b_t_Mu_phi;   //!
@@ -323,7 +323,6 @@ public :
    TBranch        *b_t_SubJet_tau2;   //!
    TBranch        *b_t_SubJet_tau3;   //!
    TBranch        *b_t_SubJet_tau4;   //!
-   TBranch        *b_t_SoftActivityJetNjets5;
    TBranch        *b_t_nJet;   //!
    TBranch        *b_t_Jet_area;   //!
    TBranch        *b_t_Jet_btagCMVA;   //!
@@ -379,10 +378,6 @@ public :
    TBranch        *b_t_PV_z;   //!
    TBranch        *b_t_PV_npvs;   //!
    TBranch        *b_t_PV_npvsGood;   //!
-   TBranch        *b_t_GenJet_eta;   //!                                                                                                                                                                  
-   TBranch        *b_t_GenJet_mass;   //!                                                                                                                                                                 
-   TBranch        *b_t_GenJet_phi;   //!                                                                                                                                            
-   TBranch        *b_t_GenJet_pt;   //!
    TBranch        *b_t_GenPart_eta;   //!
    TBranch        *b_t_GenPart_mass;   //!
    TBranch        *b_t_GenPart_phi;   //!
@@ -390,6 +385,11 @@ public :
    TBranch        *b_t_GenPart_genPartIdxMother;   //!
    TBranch        *b_t_GenPart_pdgId;   //!
    TBranch        *b_t_GenPart_status;   //!
+   TBranch        *b_t_SoftActivityJetNjets5;
+   TBranch        *b_t_GenJet_eta;   //!
+   TBranch        *b_t_GenJet_mass;   //!
+   TBranch        *b_t_GenJet_phi;   //!
+   TBranch        *b_t_GenJet_pt;   //!
 
 };
 #endif
@@ -414,7 +414,7 @@ void NtupleVariables::Init(TTree *tree)
    fCurrent = -1;
    fChain->SetMakeClass(1);
 
-      // Set object pointer
+   // Set object pointer
    t_El_charge = 0;
    t_El_pt = 0;
    t_El_phi = 0;
@@ -441,9 +441,9 @@ void NtupleVariables::Init(TTree *tree)
    t_Mu_EffSF_TRIG=0;
    t_Mu_EffSFErr_TRIG=0;
    t_Mu_EffSF_ID=0;
-   t_Mu_EffSFErr_ID=0;
+   //t_Mu_EffSFErr_ID=0;
    t_Mu_EffSF_ISO=0;
-   t_Mu_EffSFErr_ISO=0;
+   //t_Mu_EffSFErr_ISO=0;
    t_Mu_pt = 0;
    t_Mu_ptErr = 0;
    t_Mu_phi = 0;
@@ -539,10 +539,6 @@ void NtupleVariables::Init(TTree *tree)
    t_bJet_SF = 0;
    t_bJet_SFup = 0;
    t_bJet_SFdown = 0;
-   t_GenJet_eta = 0;
-   t_GenJet_mass = 0;
-   t_GenJet_phi = 0;
-   t_GenJet_pt = 0;
    t_GenPart_eta = 0;
    t_GenPart_mass = 0;
    t_GenPart_phi = 0;
@@ -550,6 +546,10 @@ void NtupleVariables::Init(TTree *tree)
    t_GenPart_genPartIdxMother = 0;
    t_GenPart_pdgId = 0;
    t_GenPart_status = 0;
+   t_GenJet_eta = 0;
+   t_GenJet_mass = 0;
+   t_GenJet_phi = 0;
+   t_GenJet_pt = 0;
    // Set branch addresses and branch pointers
    if (!tree) return;
    fChain = tree;
@@ -560,15 +560,15 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_luminosityBlock", &t_luminosityBlock, &b_t_luminosityBlock);
    fChain->SetBranchAddress("t_event", &t_event, &b_t_event);
    fChain->SetBranchAddress("t_genWeight", &t_genWeight, &b_t_genWeight);
+   fChain->SetBranchAddress("t_puWeight", &t_puWeight, &b_t_puWeight);
+   fChain->SetBranchAddress("t_puWeightUp", &t_puWeightUp, &b_t_puWeightUp);
+   fChain->SetBranchAddress("t_puWeightDown", &t_puWeightDown, &b_t_puWeightDown);
+   fChain->SetBranchAddress("t_PrefireWeight", &t_PrefireWeight, &b_t_PrefireWeight);
+   fChain->SetBranchAddress("t_PrefireWeight_Up", &t_PrefireWeight_Up, &b_t_PrefireWeight_Up);
+   fChain->SetBranchAddress("t_PrefireWeight_Down", &t_PrefireWeight_Down, &b_t_PrefireWeight_Down);
    fChain->SetBranchAddress("t_mu1", &t_mu1, &b_t_mu1);
    fChain->SetBranchAddress("t_mu2", &t_mu2, &b_t_mu2);
    fChain->SetBranchAddress("t_index_trigm_mu", &t_index_trigm_mu, &b_t_index_trigm_mu);
-   fChain->SetBranchAddress("t_puWeight",&t_puWeight,&b_t_puWeight);
-   fChain->SetBranchAddress("t_puWeightUp",&t_puWeightUp,&b_t_puWeightUp);
-   fChain->SetBranchAddress("t_puWeightDown",&t_puWeightDown,&b_t_puWeightDown);
-   fChain->SetBranchAddress("t_PrefireWeight",&t_PrefireWeight,&b_t_PrefireWeight);
-   fChain->SetBranchAddress("t_PrefireWeight_Up",&t_PrefireWeight_Up,&b_t_PrefireWeight_Up);
-   fChain->SetBranchAddress("t_PrefireWeight_Down",&t_PrefireWeight_Down,&b_t_PrefireWeight_Down);
    fChain->SetBranchAddress("t_El_charge", &t_El_charge, &b_t_El_charge);
    fChain->SetBranchAddress("t_El_pt", &t_El_pt, &b_t_El_pt);
    fChain->SetBranchAddress("t_El_phi", &t_El_phi, &b_t_El_phi);
@@ -595,9 +595,9 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_Mu_EffSF_TRIG", &t_Mu_EffSF_TRIG, &b_t_Mu_EffSF_TRIG);
    fChain->SetBranchAddress("t_Mu_EffSFErr_TRIG", &t_Mu_EffSFErr_TRIG, &b_t_Mu_EffSFErr_TRIG);
    fChain->SetBranchAddress("t_Mu_EffSF_ID", &t_Mu_EffSF_ID, &b_t_Mu_EffSF_ID);
-   fChain->SetBranchAddress("t_Mu_EffSFErr_ID", &t_Mu_EffSFErr_ID, &b_t_Mu_EffSFErr_ID);
+   //fChain->SetBranchAddress("t_Mu_EffSFErr_ID", &t_Mu_EffSFErr_ID, &b_t_Mu_EffSFErr_ID);
    fChain->SetBranchAddress("t_Mu_EffSF_ISO", &t_Mu_EffSF_ISO, &b_t_Mu_EffSF_ISO);
-   fChain->SetBranchAddress("t_Mu_EffSFErr_ISO", &t_Mu_EffSFErr_ISO, &b_t_Mu_EffSFErr_ISO);
+   //fChain->SetBranchAddress("t_Mu_EffSFErr_ISO", &t_Mu_EffSFErr_ISO, &b_t_Mu_EffSFErr_ISO);
    fChain->SetBranchAddress("t_Mu_pt", &t_Mu_pt, &b_t_Mu_pt);
    fChain->SetBranchAddress("t_Mu_ptErr", &t_Mu_ptErr, &b_t_Mu_ptErr);
    fChain->SetBranchAddress("t_Mu_phi", &t_Mu_phi, &b_t_Mu_phi);
@@ -657,7 +657,6 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_SubJet_tau2", &t_SubJet_tau2, &b_t_SubJet_tau2);
    fChain->SetBranchAddress("t_SubJet_tau3", &t_SubJet_tau3, &b_t_SubJet_tau3);
    fChain->SetBranchAddress("t_SubJet_tau4", &t_SubJet_tau4, &b_t_SubJet_tau4);
-   fChain->SetBranchAddress("t_SoftActivityJetNjets5", &t_SoftActivityJetNjets5, &b_t_SoftActivityJetNjets5);
    fChain->SetBranchAddress("t_nJet", &t_nJet, &b_t_nJet);
    fChain->SetBranchAddress("t_Jet_area", &t_Jet_area, &b_t_Jet_area);
    fChain->SetBranchAddress("t_Jet_btagCMVA", &t_Jet_btagCMVA, &b_t_Jet_btagCMVA);
@@ -714,10 +713,6 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_PV_z", &t_PV_z, &b_t_PV_z);
    fChain->SetBranchAddress("t_PV_npvs", &t_PV_npvs, &b_t_PV_npvs);
    fChain->SetBranchAddress("t_PV_npvsGood", &t_PV_npvsGood, &b_t_PV_npvsGood);
-   fChain->SetBranchAddress("t_GenJet_eta", &t_GenJet_eta, &b_t_GenJet_eta);
-   fChain->SetBranchAddress("t_GenJet_mass", &t_GenJet_mass, &b_t_GenJet_mass);
-   fChain->SetBranchAddress("t_GenJet_phi", &t_GenJet_phi, &b_t_GenJet_phi);
-   fChain->SetBranchAddress("t_GenJet_pt", &t_GenJet_pt, &b_t_GenJet_pt);
    fChain->SetBranchAddress("t_GenPart_eta", &t_GenPart_eta, &b_t_GenPart_eta);
    fChain->SetBranchAddress("t_GenPart_mass", &t_GenPart_mass, &b_t_GenPart_mass);
    fChain->SetBranchAddress("t_GenPart_phi", &t_GenPart_phi, &b_t_GenPart_phi);
@@ -725,7 +720,11 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_GenPart_genPartIdxMother", &t_GenPart_genPartIdxMother, &b_t_GenPart_genPartIdxMother);
    fChain->SetBranchAddress("t_GenPart_pdgId", &t_GenPart_pdgId, &b_t_GenPart_pdgId);
    fChain->SetBranchAddress("t_GenPart_status", &t_GenPart_status, &b_t_GenPart_status);
-
+   fChain->SetBranchAddress("t_SoftActivityJetNjets5", &t_SoftActivityJetNjets5, &b_t_SoftActivityJetNjets5);
+   fChain->SetBranchAddress("t_GenJet_eta", &t_GenJet_eta, &b_t_GenJet_eta);
+   fChain->SetBranchAddress("t_GenJet_mass", &t_GenJet_mass, &b_t_GenJet_mass);
+   fChain->SetBranchAddress("t_GenJet_phi", &t_GenJet_phi, &b_t_GenJet_phi);
+   fChain->SetBranchAddress("t_GenJet_pt", &t_GenJet_pt, &b_t_GenJet_pt);
    Notify();
 }
 
