@@ -91,7 +91,7 @@ for data in datasets:
     jobidx = 0
     if ( data[0]=="DYJetsToLL_VBFfilter_2017"):
         dataname  = "DYJetsToLL_VBFfilter_2017"
-        inputfname = "DYJetsToLL_VBFfilter_2017.txt"
+        inputfname = "DYJetsToLL_VBFfilter_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -100,7 +100,7 @@ for data in datasets:
     
     elif ( data[0]=="DYJetsToLL_VBFfilter_2018"):
         dataname = "DYJetsToLL_VBFfilter_2018"
-        inputfname = "DYJetsToLL_VBFfilter_2018.txt"
+        inputfname = "DYJetsToLL_VBFfilter_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -108,7 +108,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_VBFfilter_2016"):
         dataname = "DYJetsToLL_VBFfilter_2016"
-        inputfname = "DYJetsToLL_VBFfilter_2016.txt"
+        inputfname = "DYJetsToLL_VBFfilter_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -116,7 +116,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_M105To160_incl_2017"):
         dataname = "DYJetsToLL_M105To160_incl_2017"
-        inputfname = "DYJetsToLL_M105To160_incl_2017.txt"
+        inputfname = "DYJetsToLL_M105To160_incl_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -124,7 +124,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_M105To160_incl_2016"):
         dataname = "DYJetsToLL_M105To160_incl_2016"
-        inputfname = "DYJetsToLL_M105To160_incl_2016.txt"
+        inputfname = "DYJetsToLL_M105To160_incl_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -132,7 +132,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_M105To160_incl_2018"):
         dataname = "DYJetsToLL_M105To160_incl_2018"
-        inputfname = "DYJetsToLL_M105To160_incl_2018.txt"
+        inputfname = "DYJetsToLL_M105To160_incl_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -140,7 +140,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_2017"):
         dataname  = "DYJetsToLL_2017"
-        inputfname = "DYJetsToLL_2017.txt"
+        inputfname = "DYJetsToLL_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -149,7 +149,7 @@ for data in datasets:
     
     elif ( data[0]=="DYJetsToLL_2018"):
         dataname = "DYJetsToLL_2018"
-        inputfname = "DYJetsToLL_2018.txt"
+        inputfname = "DYJetsToLL_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -157,7 +157,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL_2016"):
         dataname = "DYJetsToLL_2016"
-        inputfname = "DYJetsToLL_2016.txt"
+        inputfname = "DYJetsToLL_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -165,7 +165,7 @@ for data in datasets:
 
     elif ( data[0]=="DYJetsToLL"):
         dataname = "DYJetsToLL"
-        inputfname = "DYJetsToLL.txt"
+        inputfname = "DYJetsToLL_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -173,14 +173,14 @@ for data in datasets:
 
     elif ( data[0]=="ggH_2018"):
         dataname = "ggH_2018"
-        inputfname = "ggH_2018.txt"
+        inputfname = "ggH_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="ggH_2017"):
         dataname = "ggH_2017"
-        inputfname = "ggH_2017.txt"
+        inputfname = "ggH_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -188,14 +188,14 @@ for data in datasets:
 
     elif ( data[0]=="ggH_2016"):
         dataname = "ggH_2016"
-        inputfname = "ggH_2016.txt"
+        inputfname = "ggH_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="VBFHToMuMu_2017"):
         dataname = "VBFHToMuMu_2017"
-        inputfname = "VBFHToMuMu_2017.txt"
+        inputfname = "VBFHToMuMu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -203,14 +203,14 @@ for data in datasets:
     
     elif ( data[0]=="VBFHToMuMu_2016"):
         dataname = "VBFHToMuMu_2016"
-        inputfname = "VBFHToMuMu_2016.txt"
+        inputfname = "VBFHToMuMu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 1
     elif ( data[0]=="VBFHToMuMu_2018"):
         dataname = "VBFHToMuMu_2018"
-        inputfname = "VBFHToMuMu_2018.txt"
+        inputfname = "VBFHToMuMu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -218,14 +218,14 @@ for data in datasets:
 
     elif ( data[0]=="WZ"):
         dataname = "WZ"
-        inputfname = "WZ.txt"
+        inputfname = "WZ_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="ZZTo4L_2016"):
         dataname = "ZZTo4L_2016"
-        inputfname = "ZZTo4L_2016.txt"
+        inputfname = "ZZTo4L_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -233,7 +233,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Q_2016"):
         dataname = "ZZTo2L2Q_2016"
-        inputfname = "ZZTo2L2Q_2016.txt"
+        inputfname = "ZZTo2L2Q_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -241,7 +241,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Nu_2016"):
         dataname = "ZZTo2L2Nu_2016"
-        inputfname = "ZZTo2L2Nu_2016.txt"
+        inputfname = "ZZTo2L2Nu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -249,7 +249,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo4L_2018"):
         dataname = "ZZTo4L_2018"
-        inputfname = "ZZTo4L_2018.txt"
+        inputfname = "ZZTo4L_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -257,7 +257,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Q_2018"):
         dataname = "ZZTo2L2Q_2018"
-        inputfname = "ZZTo2L2Q_2018.txt"
+        inputfname = "ZZTo2L2Q_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -265,7 +265,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Nu_2018"):
         dataname = "ZZTo2L2Nu_2018"
-        inputfname = "ZZTo2L2Nu_2018.txt"
+        inputfname = "ZZTo2L2Nu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -273,7 +273,7 @@ for data in datasets:
     
     elif ( data[0]=="ZZTo4L_2017"):
         dataname = "ZZTo4L_2017"
-        inputfname = "ZZTo4L_2017.txt"
+        inputfname = "ZZTo4L_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -281,7 +281,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Q_2017"):
         dataname = "ZZTo2L2Q_2017"
-        inputfname = "ZZTo2L2Q_2017.txt"
+        inputfname = "ZZTo2L2Q_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -289,7 +289,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZTo2L2Nu_2017"):
         dataname = "ZZTo2L2Nu_2017"
-        inputfname = "ZZTo2L2Nu_2017.txt"
+        inputfname = "ZZTo2L2Nu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -297,7 +297,7 @@ for data in datasets:
 
     elif ( data[0]=="ttsl_2018"):
         dataname = "ttsl_2018"
-        inputfname = "ttsl_2018.txt"
+        inputfname = "ttsl_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -306,7 +306,7 @@ for data in datasets:
         
     elif ( data[0]=="ZH_2018"):
         dataname = "ZH_2018"
-        inputfname = "ZH_2018.txt"
+        inputfname = "ZH_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -316,7 +316,7 @@ for data in datasets:
 
     elif ( data[0]=="ttH_2018"):
         dataname = "ttH_2018"
-        inputfname = "ttH_2018.txt"
+        inputfname = "ttH_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -325,7 +325,7 @@ for data in datasets:
 
     elif ( data[0]=="WminusH_2018"):
         dataname = "WminusH_2018"
-        inputfname = "WminusH_2018.txt"
+        inputfname = "WminusH_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -334,7 +334,7 @@ for data in datasets:
 
     elif ( data[0]=="WplusH_2018"):
         dataname = "WplusH_2018"
-        inputfname = "WplusH_2018.txt"
+        inputfname = "WplusH_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -342,7 +342,7 @@ for data in datasets:
 
     elif ( data[0]=="ZH_2016"):
         dataname = "ZH_2016"
-        inputfname = "ZH_2016.txt"
+        inputfname = "ZH_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -352,7 +352,7 @@ for data in datasets:
 
     elif ( data[0]=="ttH_2016"):
         dataname = "ttH_2016"
-        inputfname = "ttH_2016.txt"
+        inputfname = "ttH_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -361,7 +361,7 @@ for data in datasets:
 
     elif ( data[0]=="WminusH_2016"):
         dataname = "WminusH_2016"
-        inputfname = "WminusH_2016.txt"
+        inputfname = "WminusH_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -370,7 +370,7 @@ for data in datasets:
 
     elif ( data[0]=="WplusH_2016"):
         dataname = "WplusH_2016"
-        inputfname = "WplusH_2016.txt"
+        inputfname = "WplusH_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -378,7 +378,7 @@ for data in datasets:
 
     elif ( data[0]=="ttTo2l2v_2018"):
         dataname = "ttTo2l2v_2018"
-        inputfname = "ttTo2l2v_2018.txt"
+        inputfname = "ttTo2l2v_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -386,7 +386,7 @@ for data in datasets:
 
     elif ( data[0]=="ttsl_2017"):
         dataname = "ttsl_2017"
-        inputfname = "ttsl_2017.txt"
+        inputfname = "ttsl_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -394,7 +394,7 @@ for data in datasets:
 
     elif ( data[0]=="ttTo2l2v_2016"):
         dataname = "ttTo2l2v_2016"
-        inputfname = "ttTo2l2v_2016.txt"
+        inputfname = "ttTo2l2v_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -402,7 +402,7 @@ for data in datasets:
 
     elif ( data[0]=="ttsl_2016"):
         dataname = "ttsl_2016"
-        inputfname = "ttsl_2016.txt"
+        inputfname = "ttsl_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -410,21 +410,21 @@ for data in datasets:
 
     elif ( data[0]=="ttJets_DiLept_2016"):
         dataname = "ttJets_DiLept_2016"
-        inputfname = "ttJets_DiLept_2016.txt"
+        inputfname = "ttJets_DiLept_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="ttJets_DiLept_2017"):
         dataname = "ttJets_DiLept_2017"
-        inputfname = "ttJets_DiLept_2017.txt"
+        inputfname = "ttJets_DiLept_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="ttJets_DiLept_2018"):
         dataname = "ttJets_DiLept_2018"
-        inputfname = "ttJets_DiLept_2018.txt"
+        inputfname = "ttJets_DiLept_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -432,7 +432,7 @@ for data in datasets:
 
     elif ( data[0]=="ZH_2017"):
         dataname = "ZH_2017"
-        inputfname = "ZH_2017.txt"
+        inputfname = "ZH_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -442,7 +442,7 @@ for data in datasets:
 
     elif ( data[0]=="ttH_2017"):
         dataname = "ttH_2017"
-        inputfname = "ttH_2017.txt"
+        inputfname = "ttH_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -451,7 +451,7 @@ for data in datasets:
 
     elif ( data[0]=="WminusH_2017"):
         dataname = "WminusH_2017"
-        inputfname = "WminusH_2017.txt"
+        inputfname = "WminusH_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -460,7 +460,7 @@ for data in datasets:
 
     elif ( data[0]=="WplusH_2017"):
         dataname = "WplusH_2017"
-        inputfname = "WplusH_2017.txt"
+        inputfname = "WplusH_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -469,7 +469,7 @@ for data in datasets:
 
     elif ( data[0]=="ttTo2l2v_2017"):
         dataname = "ttTo2l2v_2017"
-        inputfname = "ttTo2l2v_2017.txt"
+        inputfname = "ttTo2l2v_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -477,7 +477,7 @@ for data in datasets:
 
     elif ( data[0]=="EWK_2017"):
         dataname = "EWK_2017"
-        inputfname = "EWK_2017.txt"
+        inputfname = "EWK_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -485,7 +485,7 @@ for data in datasets:
 
     elif ( data[0]=="EWK_2018"):
         dataname = "EWK_2018"
-        inputfname = "EWK_2018.txt"
+        inputfname = "EWK_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -493,7 +493,7 @@ for data in datasets:
 
     elif ( data[0]=="EWK_2016"):
         dataname = "EWK_2016"
-        inputfname = "EWK_2016.txt"
+        inputfname = "EWK_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -502,7 +502,7 @@ for data in datasets:
 
     elif ( data[0]=="WZTo3LNu_2016"):
         dataname = "WZTo3LNu_2016"
-        inputfname = "WZTo3LNu_2016.txt"
+        inputfname = "WZTo3LNu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -511,7 +511,7 @@ for data in datasets:
         
     elif ( data[0]=="WZTo2L2Q_2016"):
         dataname = "WZTo2L2Q_2016"
-        inputfname = "WZTo2L2Q_2016.txt"
+        inputfname = "WZTo2L2Q_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -521,7 +521,7 @@ for data in datasets:
 
     elif ( data[0]=="WWTo2L2Nu_2016"):
         dataname = "WWTo2L2Nu_2016"
-        inputfname = "WWTo2L2Nu_2016.txt"
+        inputfname = "WWTo2L2Nu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -529,7 +529,7 @@ for data in datasets:
 
     elif ( data[0]=="WWToLNuQQ_2016"):
         dataname = "WWToLNuQQ_2016"
-        inputfname = "WWToLNuQQ_2016.txt"
+        inputfname = "WWToLNuQQ_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -538,7 +538,7 @@ for data in datasets:
 
     elif ( data[0]=="WWW_4F_2016"):
         dataname = "WWW_4F_2016"
-        inputfname = "WWW_4F_2016.txt"
+        inputfname = "WWW_4F_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -546,14 +546,14 @@ for data in datasets:
 
     elif ( data[0]=="WWZ_4F_2016"):
         dataname = "WWZ_4F_2016"
-        inputfname = "WWZ_4F_2016.txt"
+        inputfname = "WWZ_4F_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="WZZ_2016"):
         dataname = "WZZ_2016"
-        inputfname = "WZZ_2016.txt"
+        inputfname = "WZZ_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -561,7 +561,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZZ_2016"):
         dataname = "ZZZ_2016"
-        inputfname = "ZZZ_2016.txt"
+        inputfname = "ZZZ_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -569,7 +569,7 @@ for data in datasets:
 
     elif ( data[0]=="WZTo3LNu_2017"):
         dataname = "WZTo3LNu_2017"
-        inputfname = "WZTo3LNu_2017.txt"
+        inputfname = "WZTo3LNu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -578,7 +578,7 @@ for data in datasets:
         
     elif ( data[0]=="WZTo2L2Q_2017"):
         dataname = "WZTo2L2Q_2017"
-        inputfname = "WZTo2L2Q_2017.txt"
+        inputfname = "WZTo2L2Q_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -588,7 +588,7 @@ for data in datasets:
 
     elif ( data[0]=="WWTo2L2Nu_2017"):
         dataname = "WWTo2L2Nu_2017"
-        inputfname = "WWTo2L2Nu_2017.txt"
+        inputfname = "WWTo2L2Nu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -596,7 +596,7 @@ for data in datasets:
 
     elif ( data[0]=="WWToLNuQQ_2017"):
         dataname = "WWToLNuQQ_2017"
-        inputfname = "WWToLNuQQ_2017.txt"
+        inputfname = "WWToLNuQQ_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -605,7 +605,7 @@ for data in datasets:
 
     elif ( data[0]=="WWW_4F_2017"):
         dataname = "WWW_4F_2017"
-        inputfname = "WWW_4F_2017.txt"
+        inputfname = "WWW_4F_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -613,14 +613,14 @@ for data in datasets:
 
     elif ( data[0]=="WWZ_4F_2017"):
         dataname = "WWZ_4F_2017"
-        inputfname = "WWZ_4F_2017.txt"
+        inputfname = "WWZ_4F_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
         NSections = 10
     elif ( data[0]=="WWZ_4F_2018"):
         dataname = "WWZ_4F_2018"
-        inputfname = "WWZ_4F_2018.txt"
+        inputfname = "WWZ_4F_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -628,7 +628,7 @@ for data in datasets:
 
     elif ( data[0]=="WZZ_2017"):
         dataname = "WZZ_2017"
-        inputfname = "WZZ_2017.txt"
+        inputfname = "WZZ_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -636,7 +636,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZZ_2017"):
         dataname = "ZZZ_2017"
-        inputfname = "ZZZ_2017.txt"
+        inputfname = "ZZZ_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -644,7 +644,7 @@ for data in datasets:
 
     elif ( data[0]=="WZTo3LNu_2018"):
         dataname = "WZTo3LNu_2018"
-        inputfname = "WZTo3LNu_2018.txt"
+        inputfname = "WZTo3LNu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -653,7 +653,7 @@ for data in datasets:
         
     elif ( data[0]=="WZTo2L2Q_2018"):
         dataname = "WZTo2L2Q_2018"
-        inputfname = "WZTo2L2Q_2018.txt"
+        inputfname = "WZTo2L2Q_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -663,7 +663,7 @@ for data in datasets:
 
     elif ( data[0]=="WWTo2L2Nu_2018"):
         dataname = "WWTo2L2Nu_2018"
-        inputfname = "WWTo2L2Nu_2018.txt"
+        inputfname = "WWTo2L2Nu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -671,7 +671,7 @@ for data in datasets:
 
     elif ( data[0]=="WWToLNuQQ_2018"):
         dataname = "WWToLNuQQ_2018"
-        inputfname = "WWToLNuQQ_2018.txt"
+        inputfname = "WWToLNuQQ_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -680,7 +680,7 @@ for data in datasets:
 
     elif ( data[0]=="WWW_4F_2018"):
         dataname = "WWW_4F_2018"
-        inputfname = "WWW_4F_2018.txt"
+        inputfname = "WWW_4F_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -689,7 +689,7 @@ for data in datasets:
 
     elif ( data[0]=="WZZ_2018"):
         dataname = "WZZ_2018"
-        inputfname = "WZZ_2018.txt"
+        inputfname = "WZZ_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -697,7 +697,7 @@ for data in datasets:
 
     elif ( data[0]=="ZZZ_2018"):
         dataname = "ZZZ_2018"
-        inputfname = "ZZZ_2018.txt"
+        inputfname = "ZZZ_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -705,7 +705,7 @@ for data in datasets:
 
     elif ( data[0]=="ttJets_DiLept"):
         dataname = "ttJets_DiLept"
-        inputfname = "ttJets_DiLept.txt"
+        inputfname = "ttJets_DiLept_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -713,7 +713,7 @@ for data in datasets:
 
     elif ( data[0]=="TTZToLLNuNu_2017"):
         dataname = "TTZToLLNuNu_2017"
-        inputfname = "TTZToLLNuNu_2017.txt"
+        inputfname = "TTZToLLNuNu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -722,7 +722,7 @@ for data in datasets:
 
     elif ( data[0]=="TTWJetsToLNu_2017"):
         dataname = "TTWJetsToLNu_2017"
-        inputfname = "TTWJetsToLNu_2017.txt"
+        inputfname = "TTWJetsToLNu_2017_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -730,7 +730,7 @@ for data in datasets:
 
     elif ( data[0]=="TTZToLLNuNu_2018"):
         dataname = "TTZToLLNuNu_2018"
-        inputfname = "TTZToLLNuNu_2018.txt"
+        inputfname = "TTZToLLNuNu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -739,7 +739,7 @@ for data in datasets:
 
     elif ( data[0]=="TTWJetsToLNu_2018"):
         dataname = "TTWJetsToLNu_2018"
-        inputfname = "TTWJetsToLNu_2018.txt"
+        inputfname = "TTWJetsToLNu_2018_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -747,7 +747,7 @@ for data in datasets:
         
     elif ( data[0]=="TTZToLLNuNu_2016"):
         dataname = "TTZToLLNuNu_2016"
-        inputfname = "TTZToLLNuNu_2016.txt"
+        inputfname = "TTZToLLNuNu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -756,7 +756,7 @@ for data in datasets:
 
     elif ( data[0]=="TTWJetsToLNu_2016"):
         dataname = "TTWJetsToLNu_2016"
-        inputfname = "TTWJetsToLNu_2016.txt"
+        inputfname = "TTWJetsToLNu_2016_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -764,7 +764,7 @@ for data in datasets:
   
     elif ( data[0]=="MuData1"):
         dataname = "MuData1"
-        inputfname = "Data1_Muon.txt"
+        inputfname = "Data1_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -773,7 +773,7 @@ for data in datasets:
         
     elif ( data[0]=="MuData2"):
         dataname = "MuData2"
-        inputfname = "Data2_Muon.txt"
+        inputfname = "Data2_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -783,7 +783,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData3"):
         dataname = "MuData3"
-        inputfname = "Data3_Muon.txt"
+        inputfname = "Data3_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -792,7 +792,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData4"):
         dataname = "MuData4"
-        inputfname = "Data4_Muon.txt"
+        inputfname = "Data4_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -801,7 +801,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData5"):
         dataname = "MuData5"
-        inputfname = "Data5_Muon.txt"
+        inputfname = "Data5_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -810,7 +810,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData6"):
         dataname = "MuData6"
-        inputfname = "Data6_Muon.txt"
+        inputfname = "Data6_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -819,7 +819,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData7"):
         dataname = "MuData7"
-        inputfname = "Data7_Muon.txt"
+        inputfname = "Data7_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -827,7 +827,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData8"):
         dataname = "MuData8"
-        inputfname = "Data8_Muon.txt"
+        inputfname = "Data8_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -836,7 +836,7 @@ for data in datasets:
         
     elif ( data[0]=="MuData9"):
         dataname = "MuData9"
-        inputfname = "Data9_Muon.txt"
+        inputfname = "Data9_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -846,7 +846,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData10"):
         dataname = "MuData10"
-        inputfname = "Data10_Muon.txt"
+        inputfname = "Data10_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -855,7 +855,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData11"):
         dataname = "MuData11"
-        inputfname = "Data11_Muon.txt"
+        inputfname = "Data11_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -864,7 +864,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData12"):
         dataname = "MuData12"
-        inputfname = "Data12_Muon.txt"
+        inputfname = "Data12_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -873,7 +873,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData13"):
         dataname = "MuData13"
-        inputfname = "Data13_Muon.txt"
+        inputfname = "Data13_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -882,7 +882,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData14"):
         dataname = "MuData14"
-        inputfname = "Data14_Muon.txt"
+        inputfname = "Data14_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -890,7 +890,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData15"):
         dataname = "MuData15"
-        inputfname = "Data15_Muon.txt"
+        inputfname = "Data15_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -899,7 +899,7 @@ for data in datasets:
 
     elif ( data[0]=="MuData16"):
         dataname = "MuData16"
-        inputfname = "Data16_Muon.txt"
+        inputfname = "Data16_Muon_JESup.txt"
         with open(inputfname) as inputfile:
             readFiles = inputfile.readlines()
             print "len(readFiles)", len(readFiles)
@@ -911,25 +911,25 @@ for data in datasets:
     print "Dataset ",  data[0], " NFilesTotal ", NFilesTotal
     NFilesDone  = 0
 
-    outDir="/mnt/hadoop/store/user/idutta/HmmAna/HistogramRootFiles/"+data[0]+"18June2019"
+    outDir="/mnt/hadoop/store/user/idutta/HmmAna/HistogramRootFiles/"+data[0]+"_JESup_18June2019"
     print outDir
     #if not os.path.exists(outDir):
         #mkdirComm="scram unsetenv -sh;gfal-mkdir " +outDir
         #os.system(mkdirComm)
-    outdir ="HmmAna/HistogramRootFiles/"+data[0]+"3May2019"
+    outdir ="HmmAna/HistogramRootFiles/"+data[0]+"_JESup_18June2019"
     while( NFilesDone < NFilesTotal ) :
         thisList = readFiles[NFilesDone : NFilesDone+NSections]
         print "NFilesDone ", NFilesDone, "len(thisList)", len(thisList)
 
         ##you may have to give full path i.e. CurrentDIR/condor_submit/runlist_...
-        inputRunListName = "/data/idutta/CMSSW_9_4_9/src/HmmAna/master/HmmAna_ntuples/condor/condor_submit/runList_"+data[0]+"_"+str(jobidx)+".txt"
+        inputRunListName = "/data/idutta/CMSSW_9_4_9/src/HmmAna/master/HmmAna_ntuples/condor/condor_submit/runList_"+data[0]+"_"+str(jobidx)+"_JESup.txt"
         inputRunList = open(inputRunListName, "w")
         for line in thisList:
             inputRunList.write(line)
 
-        condorSubmit = "condor_submit/submitCondor_"+data[0]+"_"+str(jobidx)
-        jobName      = "18June2019"+data[0]+"_job"+str(jobidx)
-        outHistFile = data[0]+"_job"+str(jobidx)+".root"
+        condorSubmit = "condor_submit/submitCondor_"+data[0]+"_JESup"+str(jobidx)
+        jobName      = "18June2019"+data[0]+"_JESup_job"+str(jobidx)
+        outHistFile = data[0]+"_JESup_job"+str(jobidx)+".root"
         isData       ="F"
         shutil.copyfile("proto_condor_submit",condorSubmit)
         for line in fileinput.FileInput(condorSubmit, inplace=1):
