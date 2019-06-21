@@ -808,7 +808,8 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 		    h_leading_bJet_phi_ttHLep->Fill((*t_bJet_phi)[0],evt_wt);
 		  }
 	      }
-              else if(t_nJet>4){
+	  }
+          else if(t_nbJet>0 && t_nJet>4){
                   cat_index = 2;
                   double binv = catyield->GetBinContent(2);
                   binv = binv + evt_wt;
@@ -866,7 +867,6 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 		  }
               }
         */
-	  }//closes n_bjet>0
           //ZH mm
           else if(mu.size()>0){
               cat_index = 3;
