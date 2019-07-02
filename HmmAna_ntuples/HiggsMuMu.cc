@@ -505,14 +505,14 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       if(t_Mu_pt->size() > 2){
          for(int i=0; i<t_Mu_pt->size(); i++){
              if(i!=t_mu1 && i!=t_mu2){
-                 if(t_Mu_pt->at(i)>20.) mu.push_back(i);
+                 if(t_Mu_pt->at(i)>20. && t_Mu_miniPFRelIso_all->at(i)<0.4) mu.push_back(i);
              }
          }  
       }
 
       if(t_El_pt->size() > 0){
          for(int i=0; i<t_El_pt->size(); i++){
-            if(t_El_pfRelIso03_all->at(i)<0.15 &&  t_El_pt->at(i)>20. && fabs(t_El_eta->at(i))<2.5 && t_El_cutBased->at(i)==2){
+            if(t_El_miniPFRelIso_all->at(i)<0.4 &&  t_El_pt->at(i)>20. && fabs(t_El_eta->at(i))<2.5 && t_El_cutBased->at(i)==2){
                 el.push_back(i);
             }
          }  
@@ -809,7 +809,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 		  }
 	      }
 	  }
-          else if(t_nbJet>0 && t_nJet>4){
+          else if(t_nbJet>0 && t_nJet>1){
                   cat_index = 2;
                   double binv = catyield->GetBinContent(2);
                   binv = binv + evt_wt;
