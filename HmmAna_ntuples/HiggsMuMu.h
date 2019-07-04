@@ -24,6 +24,7 @@
 #include<string>
 #include "TF1.h"
 #include "TAxis.h"
+#include "TGraphErrors.h"
 class HiggsMuMu:public NtupleVariables  {
 public :
 
@@ -37,7 +38,15 @@ public :
   void     GenInfo(const char *, const char *, double);
   void     BookHistogram(const char *);
   void     clearTreeVectors();
- 
+  float    min(float a, float b);
+
+  std::string str_dataset;
+  //nnlops ggH reweighting
+  TGraphErrors* gr_NNLOPSratio_pt_0jet;
+  TGraphErrors* gr_NNLOPSratio_pt_1jet;
+  TGraphErrors* gr_NNLOPSratio_pt_2jet;
+  TGraphErrors* gr_NNLOPSratio_pt_3jet;
+    
   TFile *oFile;
   TTree *cattree;
 
@@ -1189,6 +1198,18 @@ void HiggsMuMu::clearTreeVectors(){
 
 HiggsMuMu::HiggsMuMu(const TString &inputFileList, const char *outFileName, const char* dataset, const char *isData)
 {
+str_dataset = dataset;
+
+const char* nnlopsfile_path = "data/nnlops/NNLOPS_reweight.root";
+TString ggH_generator = "mcatnlo";
+if(str_dataset.find("powheg")!=std::string::npos) ggH_generator = "powheg";
+std::cout <<"ggH generator is "<<ggH_generator<<endl;
+TFile* nnlopsFile = TFile::Open(nnlopsfile_path);
+gr_NNLOPSratio_pt_0jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_0jet");
+gr_NNLOPSratio_pt_1jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_1jet");
+gr_NNLOPSratio_pt_2jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_2jet");
+gr_NNLOPSratio_pt_3jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_3jet");
+    
 TChain *tree = new TChain("tree");
 
   if( ! FillChain(tree, inputFileList) ) {
@@ -1249,5 +1270,11 @@ Long64_t HiggsMuMu::LoadTree(Long64_t entry)
       // Notify();
    }
    return centry;
+}
+
+float HiggsMuMu::min(float a, float b)
+{
+    if(a<b) return a;
+    else return b;
 }
 #endif // #ifdef HiggsMuMu_cxx

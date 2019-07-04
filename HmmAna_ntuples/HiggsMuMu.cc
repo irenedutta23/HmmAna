@@ -34,6 +34,7 @@ int main(int argc, char* argv[])
     const char *outFileName   = argv[2];
     const char *data          = argv[3];
     const char *isData        = argv[4];
+    TString procname   = argv[3];
     HiggsMuMu hmm(inputFileList, outFileName, data, isData);
     cout << "dataset " << data << " " << endl;
     
@@ -77,9 +78,9 @@ int main(int argc, char* argv[])
    proc_scale["EWK_2016"]=1.608*lumi_16/1576200.0;
    proc_scale["EWK_2017"]=1.608*lumi/3676958.2182;//3678099.0;
    proc_scale["EWK_2018"]=1.608*lumi_18/1978654.78125;//1978878.0;
-   proc_scale["ggH_2018"]=0.010571*lumi_18/216906552.0;
-   proc_scale["ggH_2017"]=0.010571*lumi/381714429.875;
-   proc_scale["ggH_2016"]=0.010571*lumi_16/996618.0;//58565928.4755;
+   proc_scale["ggH_powheg_2018"]=0.010571*lumi_18/216906552.0;
+   proc_scale["ggH_powheg_2017"]=0.010571*lumi/381714429.875;
+   proc_scale["ggH_powheg_2016"]=0.010571*lumi_16/996618.0;//58565928.4755;
    proc_scale["ttTo2l2v"]=85.656*lumi/(623402174.0+4782395097.687500+199762.000000);
    proc_scale["TTTo2L"]=85.656*lumi/(623402174.0+4782395097.687500);
    proc_scale["WZTo1L1Nu2Q"]=1.161e+01*lumi/352741934.218750;
@@ -133,7 +134,6 @@ int main(int argc, char* argv[])
    proc_scale["DY1J"]=937.4*lumi/587697890042.468750;
    proc_scale["DY2J"]=291.0*lumi/137566456384.000000;
    
-    TString procname   = argv[3];
     if(*isData=='F') cout <<"process name: "<<procname<<" scale: "<<proc_scale[procname]<<endl;
    
   hmm.Categorization(data, isData, 110, 150,proc_scale[procname],procname);
@@ -362,7 +362,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
     reader->AddVariable( "maxAbsEta", &maxAbsEta );
     reader->AddVariable( "qgl_2qAtanh", &qgl_2qAtanh );
     TString methodName = "Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh";
-    TString weightfile = "Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh.xml";
+    TString weightfile = "data/Hmm_BDT_xml/PISA/Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh.xml";
     reader->BookMVA( methodName, weightfile );
     
     
@@ -391,7 +391,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       cout <<"p6" <<endl;
       reader->AddSpectator( "BASE_cat", &BASE_cat);
       TString methodName2016 = "f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1";
-      TString weightfile2016 = "f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1.weights.xml";
+      TString weightfile2016 = "data/Hmm_BDT_xml/UF/f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1.weights.xml";
       reader2016->BookMVA( methodName2016, weightfile2016 );
     
    cout <<"p7" <<endl;
@@ -422,7 +422,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader2j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader2j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName2j = "TMVAClassification_BDTG.weights.2jet_bveto";
-      TString weightfile2j = "TMVAClassification_BDTG.weights.2jet_bveto.xml";
+      TString weightfile2j = "data/Hmm_BDT_xml/UCSD/2016/TMVAClassification_BDTG.weights.2jet_bveto.xml";
       reader2j->BookMVA( methodName2j, weightfile2j );
 
    TMVA::Reader *reader01j = new TMVA::Reader( "!Color:!Silent" );
@@ -447,7 +447,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader01j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader01j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName01j = "TMVAClassification_BDTG.weights.01jet";
-      TString weightfile01j = "TMVAClassification_BDTG.weights.01jet.xml";
+      TString weightfile01j = "data/Hmm_BDT_xml/UCSD/2016/TMVAClassification_BDTG.weights.01jet.xml";
       reader01j->BookMVA( methodName01j, weightfile01j );
 
 
@@ -494,7 +494,30 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       int index_mu1 = -999, index_mu2= -999;
       double evt_wt = 1., evt_wt_Up=1,evt_wt_Down=1, tmp_wt = 1.;
       if(*isData=='F'){
-         evt_wt=t_genWeight*scale;
+         float NNLOPS_weight = 1.0;
+         if(procname.Contains("ggH") || procname.Contains("GluGlu_H")){
+            //calculate Higgs PT
+            float gen_Higgs_pT = 0.;
+            for(int k=0; k<t_GenPart_pdgId->size(); k++){
+               if((*t_GenPart_pdgId)[k]==25 && (*t_GenPart_status)[k]==62){
+                  gen_Higgs_pT = (*t_GenPart_pt)[k];
+                  break;
+               }
+            }
+            //calculate njets with pT>30 GeV
+            int gen_njets = 0;
+            for(int k=0; k<t_GenJet_pt->size(); k++){ 
+               if((*t_GenJet_pt)[k]>30.) gen_njets++;
+            }
+            //retrive the weights based on the gen Higgs pT and njets
+            if (gen_njets==0) NNLOPS_weight = gr_NNLOPSratio_pt_0jet->Eval(min(gen_Higgs_pT,125.0));
+            else if (gen_njets==1) NNLOPS_weight = gr_NNLOPSratio_pt_1jet->Eval(min(gen_Higgs_pT,625.0));
+            else if (gen_njets==2) NNLOPS_weight = gr_NNLOPSratio_pt_2jet->Eval(min(gen_Higgs_pT,800.0));
+            else if (gen_njets>=3) NNLOPS_weight = gr_NNLOPSratio_pt_3jet->Eval(min(gen_Higgs_pT,925.0));
+            
+         }
+         evt_wt=t_genWeight*scale*NNLOPS_weight;
+         //  cout <<NNLOPS_weight<<" "<<scale<<" "<<evt_wt<<endl;
          tmp_wt=t_genWeight;
       }
       vector<int> el;
@@ -1262,6 +1285,32 @@ void HiggsMuMu::EventLoop(const char *data,const char *isData, double scale)
          evt_wt=t_genWeight*scale;
          double lepSF = 1.0;
          if(*isData=='F'){
+          /*
+          //ggH nnlo ps reweighting
+             float NNLOPS_weight = 1.0;
+             if(procname.Contains("ggH") || procname.Contains("GluGlu_H")){
+                 //calculate Higgs PT
+                 float gen_Higgs_pT = 0.;
+                 for(int k=0; k<t_GenPart_pdgId->size(); k++){
+                     if((*t_GenPart_pdgId)[k]==25 && (*t_GenPart_status)[k]==62){
+                         gen_Higgs_pT = (*t_GenPart_pt)[k];
+                         break;
+                     }
+                 }
+                 //calculate njets with pT>30 GeV
+                 int gen_njets = 0;
+                 for(int k=0; k<t_GenJet_pt->size(); k++){
+                     if((*t_GenJet_pt)[k]>30.) gen_njets++;
+                 }
+                 //retrive the weights based on the gen Higgs pT and njets
+                 if (gen_njets==0) NNLOPS_weight = gr_NNLOPSratio_pt_0jet->Eval(min(gen_Higgs_pT,125.0));
+                 else if (gen_njets==1) NNLOPS_weight = gr_NNLOPSratio_pt_1jet->Eval(min(gen_Higgs_pT,625.0));
+                 else if (gen_njets==2) NNLOPS_weight = gr_NNLOPSratio_pt_2jet->Eval(min(gen_Higgs_pT,800.0));
+                 else if (gen_njets>=3) NNLOPS_weight = gr_NNLOPSratio_pt_3jet->Eval(min(gen_Higgs_pT,925.0));
+                 
+             }
+             evt_wt*=NNLOPS_weight;
+            */ 
          if(t_index_trigm_mu==t_mu1) lepSF = (*t_Mu_EffSF_TRIG)[t_mu1]*(*t_Mu_EffSF_ID)[t_mu1]*(*t_Mu_EffSF_ISO)[t_mu1]*(*t_Mu_EffSF_ID)[t_mu2]*(*t_Mu_EffSF_ISO)[t_mu2];
          else if( t_index_trigm_mu==t_mu2) lepSF = (*t_Mu_EffSF_TRIG)[t_mu2]*(*t_Mu_EffSF_ID)[t_mu1]*(*t_Mu_EffSF_ISO)[t_mu1]*(*t_Mu_EffSF_ID)[t_mu2]*(*t_Mu_EffSF_ISO)[t_mu2];
           
