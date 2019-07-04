@@ -1,1 +1,1 @@
-/eos/cms/store/user/nlu/Hmm/nanoAOD/sync/data/0E555487-7241-E811-9209-002481CFC92C.root
+/mnt/hadoop/store/user/nlu/Hmm/nanoAOD/2016/Dec122018/DYJetsToLL_M-105To160_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8/DYJetsToLL_M-105To160_TuneCP5_PSweights_13TeV-amcatnloFXFX-pythia8_v3-v1_May21v1/190602_013517/0002/myNanoProdMc_NANO_2684.root

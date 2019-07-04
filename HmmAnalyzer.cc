@@ -22,7 +22,7 @@ int main(int argc, char* argv[])
 {
 
   if(argc < 4) {
-    cerr << "Please give 4 arguments: " << "inputFileList outFileName datasetname isdata"<<endl;
+    cerr << "Please give 4 arguments " << "runList " << " " << "outputFileName" << " " << "dataset" << "data type"<<endl;
     return -1;
   }
   const char *inputFileList = argv[1];
@@ -44,7 +44,9 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
   //BookTreeBranches();
   //cout<<"booked tree branches\n";
   float muon_mass = 0.1056583745;
-
+  bool datafile = true;
+  if(*isData=='F') datafile = false;
+ 
   //btag SF
   BTagCalibration calib("deepcsv","data/btagSF/DeepCSV_94XSF_V3_B_F.csv");
   BTagCalibrationReader reader(BTagEntry::OP_MEDIUM,  // operating point
@@ -54,35 +56,35 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
   reader.load(calib,                // calibration instance
 	      BTagEntry::FLAV_B,    // btag flavour
 	      "comb")       ;        // measurement type
-
-  Long64_t nentries = fChain->GetEntriesFast();
-
+  
+   Long64_t nentries = fChain->GetEntriesFast();
+   //Long64_t nentries = 6;
    Long64_t nbytes = 0, nb = 0;
    for (Long64_t jentry=0; jentry<nentries;jentry++) {
       Long64_t ientry = LoadTree(jentry);
       if (ientry < 0) break;
       nb = fChain->GetEntry(jentry);   nbytes += nb;
       // if (Cut(ientry) < 0) continue;
-      if(jentry%10000==0) {
-          cout <<"entry: "<<jentry<<endl;
-      }
- 
-      //if(jentry>0 && jentry%50000==0) {
-      //    cout << "breaking loop at " << jentry << endl;
-      //    break;
-      //}
+      if(jentry%5000==0) cout <<"entry: "<<jentry<<endl;
+
+      //if(event!=709267) continue;
 
       clearTreeVectors();
 
       //sum of genWeight
-      if(*isData=='F'){
-         float value_h_sumOfgw = h_sumOfgw->GetBinContent(1);
-         value_h_sumOfgw = value_h_sumOfgw + genWeight;
-         h_sumOfgw->SetBinContent(1,value_h_sumOfgw);
-      }
+      float value_h_sumOfgw = h_sumOfgw->GetBinContent(1);
+      if(*isData=='F')   value_h_sumOfgw = value_h_sumOfgw + genWeight;
+      else value_h_sumOfgw = value_h_sumOfgw + 1.0;
+      h_sumOfgw->SetBinContent(1,value_h_sumOfgw);
+
+      //sum of genWeight and pileupweight
+      float value_h_sumOfgpw = h_sumOfgpw->GetBinContent(1);
+      if(*isData=='F')   value_h_sumOfgpw = value_h_sumOfgpw + genWeight*puWeight;
+      else value_h_sumOfgpw = value_h_sumOfgpw + 1.0;
+      h_sumOfgpw->SetBinContent(1,value_h_sumOfgpw);
 
       bool trig_decision = false;
-      if( HLT_IsoMu27==1 /* || HLT_IsoTkMu27_v*==1*/ ) trig_decision =true;
+      if( HLT_IsoMu24==1 || HLT_IsoTkMu24==1 ) trig_decision =true;
 
       int index_mu1(-999), index_mu2(-999); 
       bool run_muChecks =false; 
@@ -111,16 +113,16 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
             }
             CorrectPtRoch( _Roch_calib, false, mu_raw,
                    pt_Roch, ptErr_Roch, pt_Roch_sys_up, pt_Roch_sys_down,
-                    Muon_charge[i], Muon_nTrackerLayers[i], gen_pt, true );
+                    Muon_charge[i], Muon_nTrackerLayers[i], gen_pt, datafile );
             //cout <<"pt_Roch "<<pt_Roch<<endl;
             mu_pt_Roch_corr.push_back(pt_Roch);
             mu_ptErr_Roch_corr.push_back(ptErr_Roch); 
         }
         
         for(int i=0;i<nMuon;i++){
-          if(/*Muon_isglobal[i] && Muon_istracker[i] &&*/ mu_pt_Roch_corr[i]>30. && Muon_mediumId[i] && fabs(Muon_eta[i])<2.4 && Muon_pfRelIso04_all[i]<0.25){
+          if( Muon_isGlobal[i] && Muon_isTracker[i] && mu_pt_Roch_corr[i]>26. && Muon_mediumId[i] && fabs(Muon_eta[i])<2.4 && Muon_pfRelIso04_all[i]<0.25){
               for(int j=i+1;j<nMuon;j++){
-                 if(/*Muon_isglobal[j] && Muon_istracker[j] &&*/ Muon_charge[i]*Muon_charge[j]== -1 && mu_pt_Roch_corr[j]>20. && Muon_mediumId[j] && fabs(Muon_eta[j])<2.4 && Muon_pfRelIso04_all[j]<0.25){
+                 if( Muon_isGlobal[j] && Muon_isTracker[j] && Muon_charge[i]*Muon_charge[j]== -1 && mu_pt_Roch_corr[j]>20. && Muon_mediumId[j] && fabs(Muon_eta[j])<2.4 && Muon_pfRelIso04_all[j]<0.25){
                     Event_sel =true; 
                     index_mu1 = i; 
                     index_mu2 = j;
@@ -135,13 +137,13 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
          float dR_TrigObj = 999.;
          if(TrigObj_id[i]==13){
               dR_TrigObj = DeltaR(Muon_eta[index_mu1], Muon_phi[index_mu1], TrigObj_eta[i], TrigObj_phi[i]);
-              if(dR_TrigObj<0.1 && mu_pt_Roch_corr[index_mu1]>30.){ 
+              if(dR_TrigObj<0.1 && mu_pt_Roch_corr[index_mu1]>26.){ 
                  trig_match = true;
                  t_index_trigm_mu = 1;
                  break;
               }
               else{
-                if(mu_pt_Roch_corr[index_mu2]>30.){
+                if(mu_pt_Roch_corr[index_mu2]>26.){
                   dR_TrigObj = DeltaR(Muon_eta[index_mu2], Muon_phi[index_mu2], TrigObj_eta[i], TrigObj_phi[i]);
                   if(dR_TrigObj<0.1){ 
                     trig_match = true;
@@ -162,17 +164,26 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
         int t_index_mu1 = -999;
         int t_index_mu2 = -999;
         int t_index = 0;
+        /*
+        if(*isData=='F'){
+               t_pileupWeight = getPileupWeight(Pileup_nPU);
+               t_pileupupWeight = getPileupWeightUp(Pileup_nPU);
+               t_pileupdnWeight = getPileupWeightDown(Pileup_nPU);
+        }
+        */
 	for(int i=0;i<nMuon;i++){
           if(fabs(Muon_eta[i])<2.4 && Muon_mediumId[i] && Muon_pfRelIso04_all[i] < 0.25){
             if(i==index_mu1) t_index_mu1 = t_index;
             if(i==index_mu2) t_index_mu2 = t_index;
-            if(*isData=='F'){ 
-               t_Mu_EffSF_TRIG->push_back(Mu_eff_SF_TRIG.getSF(13,Muon_pt[i],Muon_eta[i]));
+            if(*isData=='F'){
+               t_Mu_EffSF_TRIG->push_back(Mu_eff_SF_TRIG.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
                t_Mu_EffSFErr_TRIG->push_back(Mu_eff_SF_TRIG.getSFErr(13,Muon_pt[i],Muon_eta[i]));
-               t_Mu_EffSF_ID->push_back(Mu_eff_SF_ID.getSF(13,Muon_pt[i],Muon_eta[i]));
-               t_Mu_EffSFErr_ID->push_back(Mu_eff_SF_ID.getSFErr(13,Muon_pt[i],Muon_eta[i]));
-               t_Mu_EffSF_ISO->push_back(Mu_eff_SF_ISO.getSF(13,Muon_pt[i],Muon_eta[i]));
-               t_Mu_EffSFErr_ISO->push_back(Mu_eff_SF_ISO.getSFErr(13,Muon_pt[i],Muon_eta[i]));
+               t_Mu_EffSF_ID->push_back(Mu_eff_SF_ID.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
+               t_Mu_EffSF_ID_stat->push_back(Mu_eff_SF_ID_stat.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
+               t_Mu_EffSF_ID_syst->push_back(Mu_eff_SF_ID_syst.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
+               t_Mu_EffSF_ISO->push_back(Mu_eff_SF_ISO.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
+               t_Mu_EffSF_ISO_stat->push_back(Mu_eff_SF_ISO_stat.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
+               t_Mu_EffSF_ISO_syst->push_back(Mu_eff_SF_ISO_syst.getSFAve(11,Muon_pt[i],Muon_eta[i],0.5548));
             }
 	    t_Mu_charge->push_back(Muon_charge[i]);   
 	    t_Mu_pt->push_back(mu_pt_Roch_corr[i]);   
@@ -187,6 +198,8 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	    t_Mu_pfRelIso03_all->push_back(Muon_pfRelIso03_all[i]);   
 	    t_Mu_pfRelIso03_chg->push_back(Muon_pfRelIso03_chg[i]);   
 	    t_Mu_pfRelIso04_all->push_back(Muon_pfRelIso04_all[i]);   
+            t_Mu_miniPFRelIso_all->push_back(Muon_miniPFRelIso_all[i]);
+            t_Mu_miniPFRelIso_chg->push_back(Muon_miniPFRelIso_chg[i]);
 	    t_Mu_tightCharge->push_back(Muon_tightCharge[i]);   
 	    t_Mu_isPFcand->push_back(Muon_isPFcand[i]);
             //t_Mu_isglobal->push_back(Muon_isglobal[i]);
@@ -212,8 +225,7 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	t_diMuon_eta= dimu.Eta();
 	t_diMuon_phi= dimu.Phi();
 	t_diMuon_mass= dimu.M();
-
-	t_cthetaCS=2*(mu2.E()*mu1.Pz()-mu1.E()*mu2.Pz())/(dimu.M()*sqrt(pow(dimu.M(),2)+pow(dimu.Pt(),2)));
+        t_SoftActivityJetNjets5 = SoftActivityJetNjets5;
 
 	for (int j =0;j<nJet;j++){
 	  bool matched_mu=false;
@@ -224,7 +236,7 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	      break;
 	    }
 	  }
-	  if(!matched_mu && Jet_pt[j]>30. && fabs(Jet_eta[j])<4.7 && Jet_jetId[j]>=2 && Jet_puId[j]>=1){
+	  if(!matched_mu && Jet_pt[j]>25. && fabs(Jet_eta[j])<4.7 && Jet_jetId[j]>=2 && Jet_puId[j]>=1){
 	    t_nJet++;
 	    t_Jet_area->push_back(Jet_area[j]);
 	    //t_Jet_btagCMVA->push_back(Jet_btagCMVA[j]);   
@@ -246,16 +258,23 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	    t_Jet_nElectrons->push_back(Jet_nElectrons[j]);   
 	    t_Jet_nMuons->push_back(Jet_nMuons[j]);   
 	    t_Jet_puId->push_back(Jet_puId[j]);   
-	    if(*isData!='T'){
-		double jet_scalefactor    = reader.eval_auto_bounds("central", BTagEntry::FLAV_B,fabs(Jet_eta[j]), Jet_pt[j]); 
- 		double jet_scalefactor_up = reader.eval_auto_bounds("up", BTagEntry::FLAV_B, fabs(Jet_eta[j]), Jet_pt[j]);
-		double jet_scalefactor_do = reader.eval_auto_bounds("down", BTagEntry::FLAV_B, fabs(Jet_eta[j]), Jet_pt[j]); 
-		t_Jet_btagSF->push_back(jet_scalefactor);
-		t_Jet_btagSFup->push_back(jet_scalefactor_up);
- 		t_Jet_btagSFdown->push_back(jet_scalefactor_do);
-	    }
-
-            if(Jet_btagDeepB[j]>0.4941){
+            if(Jet_btagDeepB[j]>0.6321){ //medium WP
+              if(*isData!='T'){
+		double jet_scalefactor    = reader.eval_auto_bounds(
+								    "central", 
+								    BTagEntry::FLAV_B, 
+								    fabs(Jet_eta[j]), // absolute value of eta
+								    Jet_pt[j]
+								    ); 
+		double jet_scalefactor_up = reader.eval_auto_bounds(
+								    "up", BTagEntry::FLAV_B, fabs(Jet_eta[j]), Jet_pt[j]);
+		double jet_scalefactor_do = reader.eval_auto_bounds(
+								    "down", BTagEntry::FLAV_B, fabs(Jet_eta[j]), Jet_pt[j]); 
+		//cout<<jet_scalefactor<<" "<<jet_scalefactor_up<<" "<<jet_scalefactor_do<<endl;
+		t_bJet_SF->push_back(jet_scalefactor);
+		t_bJet_SFup->push_back(jet_scalefactor_up);
+		t_bJet_SFdown->push_back(jet_scalefactor_do);
+	      }
 	      t_nbJet++;
 	      t_bJet_area->push_back(Jet_area[j]);
 	      //t_bJet_btagCMVA->push_back(Jet_btagCMVA[j]);   
@@ -309,8 +328,8 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	}
 
 	for(int i=0;i<nElectron;i++){
-          t_El_genPartIdx->push_back(Electron_genPartIdx[i]);
-          t_El_genPartFlav->push_back(Electron_genPartFlav[i]);
+          //t_El_genPartIdx->push_back(Electron_genPartIdx[i]);
+          //t_El_genPartFlav->push_back(Electron_genPartFlav[i]);
 	  t_El_charge->push_back(Electron_charge[i]);
 	  t_El_pt->push_back(Electron_pt[i]);
 	  t_El_phi->push_back(Electron_phi[i]);
@@ -322,26 +341,26 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	  t_El_isPFcand->push_back(Electron_isPFcand[i]);   
 	  t_El_pfRelIso03_all->push_back(Electron_pfRelIso03_all[i]);   
 	  t_El_pfRelIso03_chg->push_back(Electron_pfRelIso03_chg[i]);      
+          t_El_miniPFRelIso_all->push_back(Electron_miniPFRelIso_all[i]);
+          t_El_miniPFRelIso_chg->push_back(Electron_miniPFRelIso_chg[i]);
 	  t_El_dxy->push_back(Electron_dxy[i]);   
 	  t_El_dxyErr->push_back(Electron_dxyErr[i]);   
 	  t_El_dz->push_back(Electron_dz[i]);   
 	  t_El_dzErr->push_back(Electron_dzErr[i]);   
-          t_Electron_mvaFall17Iso->push_back(Electron_mvaFall17Iso[i]);
-	  t_Electron_mvaFall17Iso_WP80->push_back(Electron_mvaFall17Iso_WP80[i]);
-	  t_Electron_mvaFall17Iso_WP90->push_back(Electron_mvaFall17Iso_WP90[i]);
-	  t_Electron_mvaFall17Iso_WPL->push_back(Electron_mvaFall17Iso_WPL[i]);
-          t_Electron_mvaFall17noIso->push_back(Electron_mvaFall17noIso[i]);
-	  t_Electron_mvaFall17noIso_WP80->push_back(Electron_mvaFall17noIso_WP80[i]);
-	  t_Electron_mvaFall17noIso_WP90->push_back(Electron_mvaFall17noIso_WP90[i]);
-	  t_Electron_mvaFall17noIso_WPL->push_back(Electron_mvaFall17noIso_WPL[i]);
-  
+          t_Electron_mvaFall17Iso->push_back(Electron_mvaFall17V2Iso[i]);
+	  t_Electron_mvaFall17Iso_WP80->push_back(Electron_mvaFall17V2Iso_WP80[i]);
+	  t_Electron_mvaFall17Iso_WP90->push_back(Electron_mvaFall17V2Iso_WP90[i]);
+	  t_Electron_mvaFall17Iso_WPL->push_back(Electron_mvaFall17V2Iso_WPL[i]);
+          t_Electron_mvaFall17noIso->push_back(Electron_mvaFall17V2noIso[i]);
+	  t_Electron_mvaFall17noIso_WP80->push_back(Electron_mvaFall17V2noIso_WP80[i]);
+	  t_Electron_mvaFall17noIso_WP90->push_back(Electron_mvaFall17V2noIso_WP90[i]);
+	  t_Electron_mvaFall17noIso_WPL->push_back(Electron_mvaFall17V2noIso_WPL[i]);
 	}
 
 	t_MET_pt = MET_pt;
 	t_MET_phi = MET_phi;
 	t_MET_sumEt  = MET_sumEt;
-
-       
+ 
 	for(int i=0;i<nFatJet;i++){
 	  t_FatJet_area->push_back(FatJet_area[i]);  
 	  t_FatJet_btagCMVA->push_back(FatJet_btagCMVA[i]);  
@@ -377,7 +396,7 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	  t_SubJet_tau3->push_back(SubJet_tau3[i]);   
 	  t_SubJet_tau4->push_back(SubJet_tau4[i]);   
 	}
-       
+
 	t_PV_ndof = PV_ndof;
 	t_PV_x = PV_x;
 	t_PV_y = PV_y;
@@ -387,6 +406,9 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 
 	if(*isData=='F'){
           t_genWeight = genWeight;
+          t_puWeight = puWeight;
+          t_puWeightUp = puWeightUp;
+          t_puWeightDown = puWeightDown;
 	  for(int i=0;i<nGenPart;i++){
 	  
 	    if((abs(GenPart_pdgId[i])>=11 && abs(GenPart_pdgId[i])<=16) || (abs(GenPart_pdgId[i])>=23 && abs(GenPart_pdgId[i])<=25) || (abs(GenPart_genPartIdxMother[i])>=23 && abs(GenPart_genPartIdxMother[i])<=25) || (abs(GenPart_genPartIdxMother[i])>=11 && abs(GenPart_genPartIdxMother[i])<=16) ){
@@ -399,6 +421,25 @@ void HmmAnalyzer::EventLoop(const char *data,const char *isData)
 	      t_GenPart_status->push_back(GenPart_status[i]);
 	    }
 	  }
+          for(int i=0;i<nGenJet;i++){
+              t_GenJet_eta->push_back(GenJet_eta[i]);
+              t_GenJet_mass->push_back(GenJet_mass[i]);
+              t_GenJet_phi->push_back(GenJet_phi[i]);
+              t_GenJet_pt->push_back(GenJet_pt[i]);
+          }
+          t_nLHEPdfWeight = nLHEPdfWeight;
+          for(int i=0; i<nLHEPdfWeight; i++){
+              t_LHEPdfWeight->push_back(LHEPdfWeight[i]);
+          }
+         
+          t_nLHEScaleWeight = nLHEScaleWeight;
+          for(int i=0; i<nLHEScaleWeight; i++){
+             t_LHEScaleWeight->push_back(LHEScaleWeight[i]);
+          }
+          t_nPSWeight = nPSWeight;
+          for(int i=0; i<nPSWeight; i++){
+             t_PSWeight->push_back(PSWeight[i]);
+          }
 	}
       
       //cout <<run<<" "<<luminosityBlock<<" "<<event<<" "<<mu_pt_Roch_corr[t_index_mu1]<<" "<<Muon_eta[t_index_mu1]<<mu_pt_Roch_corr[t_index_mu2]<<" "<<Muon_eta[t_index_mu2]<<" "<<t_diMuon_mass<<" "<<t_nJet<<" "<<t_diJet_mass_mo<<" "<<t_nbJet<<endl;
