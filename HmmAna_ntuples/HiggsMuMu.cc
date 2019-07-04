@@ -59,7 +59,7 @@ int main(int argc, char* argv[])
    proc_scale["DYJetsToLL"]=6225.42*lumi/(3258462550016.0+492179082112.0);
    proc_scale["DYJetsToLL_VBFfilter_2018"]=2.02*lumi_18/3173402777.5;//(3355073909.5);
    proc_scale["DYJetsToLL_VBFfilter_2017"]=2.02*lumi/(2259008890.6);
-   proc_scale["DYJetsToLL_VBFfilter_2016"]=2.02*lumi_16/2569045355.250000000;//2570758278.5;
+   proc_scale["DYJetsToLL_VBFfilter_2016"]=2.02*lumi_16/2570758278.5;
    proc_scale["DYJetsToLL_M105To160_incl_2018"]=46.9479*lumi_18/292139596.5;//(3355073909.5);
    proc_scale["DYJetsToLL_M105To160_incl_2017"]=46.9479*lumi/(7139863856.25);
    proc_scale["DYJetsToLL_M105To160_incl_2016"]=46.9479*lumi_16/7223964604.28;//(2699711552.0);
@@ -89,7 +89,7 @@ int main(int argc, char* argv[])
    proc_scale["WZTo2L2Q_2017"]=5.595*lumi/266683248.0;
    proc_scale["WZTo3LNu_2018"]=4.42965*lumi_18/187398698.125;//9218653.66309;
    proc_scale["WZTo2L2Q_2018"]=5.595*lumi_18/253329022.092;
-   proc_scale["ZZTo4L_2016"]=1.256*lumi_16/82474616.0;//5728400.0;
+   proc_scale["ZZTo4L_2016"]=1.256*lumi_16/82437095.0;//82474616.0;//5728400.0;
    proc_scale["ZZTo2L2Q_2016"]=3.22*lumi_16/496436.0;
    proc_scale["ZZTo2L2Nu_2016"]=0.564*lumi_16/8931750.0;//7530975.0;
    proc_scale["ZZTo4L_2017"]=1.256*lumi/159446233.461;
@@ -118,7 +118,7 @@ int main(int argc, char* argv[])
    proc_scale["WWZ_4F_2018"]=0.1651*lumi/41737.7509766;
    proc_scale["DYJetsToLL_2017"]=5765.4*lumi/3.74020946509e+12;
    proc_scale["DYJetsToLL_2018"]=5765.4*lumi_18/2.83840120718e+12;//100113543.375;//17846205568.0;
-   proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1856607046400.000000000;//1.8938682816e+12;
+   proc_scale["DYJetsToLL_2016"]=5765.4*lumi_16/1.86045481216e+12;//1856607046400.000000000;//1.8938682816e+12;
    proc_scale["DYJetsToLL_ext"]=5765.4*lumi/3258462550016.0;
    proc_scale["DYJetsToLL_small"]=5765.4*lumi/492179082112.0;
    proc_scale["TTTo2L_small"]=85.656*lumi/623402174.0;
@@ -882,7 +882,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
               catyield->SetBinContent(4,binv);
           }
           //VBF
-          else if(t_diJet_mass>400. && ((*t_Jet_qgl)[1]!=-1 && (*t_Jet_qgl)[0]!=-1)){
+          else if(t_diJet_mass>400. && ((*t_Jet_qgl)[1]!=-1 && (*t_Jet_qgl)[0]!=-1) && (*t_Jet_pt)[0]>30.){// && (*t_Jet_pt)[1]>30.){
               if(genJet_idx.size()>=2){
                   TLorentzVector di_gJ, gJ1,gJ2;
                   gJ1.SetPtEtaPhiM((*t_GenJet_pt)[genJet_idx[0]],(*t_GenJet_eta)[genJet_idx[0]],(*t_GenJet_phi)[genJet_idx[0]],(*t_GenJet_mass)[genJet_idx[0]]);

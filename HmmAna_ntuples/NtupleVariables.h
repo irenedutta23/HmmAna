@@ -73,6 +73,7 @@ public :
    vector<bool>    *t_El_isPFcand;
    vector<float>   *t_El_pfRelIso03_all;
    vector<float>   *t_El_pfRelIso03_chg;
+   vector<float>   *t_El_miniPFRelIso03_all;
    vector<float>   *t_El_dxy;
    vector<float>   *t_El_dxyErr;
    vector<float>   *t_El_dz;
@@ -103,6 +104,7 @@ public :
    vector<float>   *t_Mu_pfRelIso03_all;
    vector<float>   *t_Mu_pfRelIso03_chg;
    vector<float>   *t_Mu_pfRelIso04_all;
+   vector<float>   *t_Mu_miniPFRelIso_all;
    vector<int>     *t_Mu_tightCharge;
    vector<bool>    *t_Mu_isPFcand;
    vector<bool>    *t_Mu_isglobal;
@@ -245,6 +247,7 @@ public :
    TBranch        *b_t_El_isPFcand;   //!
    TBranch        *b_t_El_pfRelIso03_all;   //!
    TBranch        *b_t_El_pfRelIso03_chg;   //!
+   TBranch        *b_t_El_miniPFRelIso03_all; //!
    TBranch        *b_t_El_dxy;   //!
    TBranch        *b_t_El_dxyErr;   //!
    TBranch        *b_t_El_dz;   //!
@@ -275,6 +278,7 @@ public :
    TBranch        *b_t_Mu_pfRelIso03_all;   //!
    TBranch        *b_t_Mu_pfRelIso03_chg;   //!
    TBranch        *b_t_Mu_pfRelIso04_all;   //!
+   TBranch        *b_t_Mu_miniPFRelIso_all; //!
    TBranch        *b_t_Mu_tightCharge;   //!
    TBranch        *b_t_Mu_isPFcand;   //!
    TBranch        *b_t_Mu_isglobal;   //!
@@ -426,6 +430,7 @@ void NtupleVariables::Init(TTree *tree)
    t_El_isPFcand = 0;
    t_El_pfRelIso03_all = 0;
    t_El_pfRelIso03_chg = 0;
+   t_El_miniPFRelIso03_all = 0;
    t_El_dxy = 0;
    t_El_dxyErr = 0;
    t_El_dz = 0;
@@ -456,6 +461,7 @@ void NtupleVariables::Init(TTree *tree)
    t_Mu_pfRelIso03_all = 0;
    t_Mu_pfRelIso03_chg = 0;
    t_Mu_pfRelIso04_all = 0;
+   t_Mu_miniPFRelIso_all = 0;
    t_Mu_tightCharge = 0;
    t_Mu_isPFcand = 0;
    t_Mu_isglobal = 0;
@@ -580,6 +586,7 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_El_isPFcand", &t_El_isPFcand, &b_t_El_isPFcand);
    fChain->SetBranchAddress("t_El_pfRelIso03_all", &t_El_pfRelIso03_all, &b_t_El_pfRelIso03_all);
    fChain->SetBranchAddress("t_El_pfRelIso03_chg", &t_El_pfRelIso03_chg, &b_t_El_pfRelIso03_chg);
+   fChain->SetBranchAddress("t_El_miniPFRelIso03_all", &t_El_miniPFRelIso03_all, &b_t_El_miniPFRelIso03_all);
    fChain->SetBranchAddress("t_El_dxy", &t_El_dxy, &b_t_El_dxy);
    fChain->SetBranchAddress("t_El_dxyErr", &t_El_dxyErr, &b_t_El_dxyErr);
    fChain->SetBranchAddress("t_El_dz", &t_El_dz, &b_t_El_dz);
@@ -610,6 +617,7 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_Mu_pfRelIso03_all", &t_Mu_pfRelIso03_all, &b_t_Mu_pfRelIso03_all);
    fChain->SetBranchAddress("t_Mu_pfRelIso03_chg", &t_Mu_pfRelIso03_chg, &b_t_Mu_pfRelIso03_chg);
    fChain->SetBranchAddress("t_Mu_pfRelIso04_all", &t_Mu_pfRelIso04_all, &b_t_Mu_pfRelIso04_all);
+   fChain->SetBranchAddress("t_Mu_miniPFRelIso_all", &t_Mu_miniPFRelIso_all, &b_t_Mu_miniPFRelIso_all);
    fChain->SetBranchAddress("t_Mu_tightCharge", &t_Mu_tightCharge, &b_t_Mu_tightCharge);
    fChain->SetBranchAddress("t_Mu_isPFcand", &t_Mu_isPFcand, &b_t_Mu_isPFcand);
    fChain->SetBranchAddress("t_Mu_isglobal", &t_Mu_isglobal, &b_t_Mu_isglobal);
