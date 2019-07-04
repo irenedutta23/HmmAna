@@ -422,7 +422,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader2j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader2j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName2j = "TMVAClassification_BDTG.weights.2jet_bveto";
-      TString weightfile2j = "data/Hmm_BDT_xml/UCSD/TMVAClassification_BDTG.weights.2jet_bveto.xml";
+      TString weightfile2j = "data/Hmm_BDT_xml/UCSD/2016/TMVAClassification_BDTG.weights.2jet_bveto.xml";
       reader2j->BookMVA( methodName2j, weightfile2j );
 
    TMVA::Reader *reader01j = new TMVA::Reader( "!Color:!Silent" );
@@ -447,7 +447,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader01j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader01j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName01j = "TMVAClassification_BDTG.weights.01jet";
-      TString weightfile01j = "data/Hmm_BDT_xml/UCSD/TMVAClassification_BDTG.weights.01jet.xml";
+      TString weightfile01j = "data/Hmm_BDT_xml/UCSD/2016/TMVAClassification_BDTG.weights.01jet.xml";
       reader01j->BookMVA( methodName01j, weightfile01j );
 
 
