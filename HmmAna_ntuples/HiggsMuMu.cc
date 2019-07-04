@@ -362,7 +362,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
     reader->AddVariable( "maxAbsEta", &maxAbsEta );
     reader->AddVariable( "qgl_2qAtanh", &qgl_2qAtanh );
     TString methodName = "Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh";
-    TString weightfile = "Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh.xml";
+    TString weightfile = "data/Hmm_BDT_xml/PISA/Classification_BDTG.variables__ll_mass__MqqLog__mumujj_pt__DeltaEtaQQ__softActivityEWK_njets5__ll_zstar__ll_pt__theta2__impulsoZ__maxAbsEta__qgl_2qAtanh.xml";
     reader->BookMVA( methodName, weightfile );
     
     
@@ -391,7 +391,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       cout <<"p6" <<endl;
       reader->AddSpectator( "BASE_cat", &BASE_cat);
       TString methodName2016 = "f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1";
-      TString weightfile2016 = "f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1.weights.xml";
+      TString weightfile2016 = "data/Hmm_BDT_xml/UF/f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1.weights.xml";
       reader2016->BookMVA( methodName2016, weightfile2016 );
     
    cout <<"p7" <<endl;
@@ -422,7 +422,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader2j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader2j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName2j = "TMVAClassification_BDTG.weights.2jet_bveto";
-      TString weightfile2j = "TMVAClassification_BDTG.weights.2jet_bveto.xml";
+      TString weightfile2j = "data/Hmm_BDT_xml/UCSD/TMVAClassification_BDTG.weights.2jet_bveto.xml";
       reader2j->BookMVA( methodName2j, weightfile2j );
 
    TMVA::Reader *reader01j = new TMVA::Reader( "!Color:!Silent" );
@@ -447,7 +447,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
       reader01j->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
       reader01j->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
       TString methodName01j = "TMVAClassification_BDTG.weights.01jet";
-      TString weightfile01j = "TMVAClassification_BDTG.weights.01jet.xml";
+      TString weightfile01j = "data/Hmm_BDT_xml/UCSD/TMVAClassification_BDTG.weights.01jet.xml";
       reader01j->BookMVA( methodName01j, weightfile01j );
 
 
