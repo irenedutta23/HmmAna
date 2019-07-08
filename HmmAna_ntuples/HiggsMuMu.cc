@@ -1087,7 +1087,6 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
               subleadingJet_qgl=(*t_Jet_qgl)[1];
               cthetaCS=2*(mu2.E()*mu1.Pz()-mu1.E()*mu2.Pz())/(diMuon_mass*sqrt(pow(diMuon_mass,2)+pow(diMuon_pt,2)));
               //cout<<event<<" "<<cthetaCS<<" "<<Zep<<endl;
-              cattree->Fill();
               if((diMuon_mass<120. || diMuon_mass>130.) && diMuon_mass >108.){
                   h_dijet_dPhijj_VBF->Fill(dPhijj,evt_wt);
                   h_jet1_pt_VBF->Fill(leadingJet_pt,evt_wt);
