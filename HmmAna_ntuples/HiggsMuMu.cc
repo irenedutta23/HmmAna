@@ -882,7 +882,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
               catyield->SetBinContent(4,binv);
           }
           //VBF
-          else if(t_diJet_mass>400. && ((*t_Jet_qgl)[1]!=-1 && (*t_Jet_qgl)[0]!=-1) && (*t_Jet_pt)[0]>30.){// && (*t_Jet_pt)[1]>30.){
+          else if(t_diJet_mass>400. && ((*t_Jet_qgl)[1]!=-1 && (*t_Jet_qgl)[0]!=-1) && (*t_Jet_pt)[0]>35.){// && (*t_Jet_pt)[1]>30.){
               if(genJet_idx.size()>=2){
                   TLorentzVector di_gJ, gJ1,gJ2;
                   gJ1.SetPtEtaPhiM((*t_GenJet_pt)[genJet_idx[0]],(*t_GenJet_eta)[genJet_idx[0]],(*t_GenJet_phi)[genJet_idx[0]],(*t_GenJet_mass)[genJet_idx[0]]);
