@@ -78,6 +78,7 @@ public :
    vector<float>   *t_El_dxyErr;
    vector<float>   *t_El_dz;
    vector<float>   *t_El_dzErr;
+   vector<float>   *t_El_sip3d;
    vector<float>   *t_Electron_mvaFall17Iso;
    vector<bool>    *t_Electron_mvaFall17Iso_WP80;
    vector<bool>    *t_Electron_mvaFall17Iso_WP90;
@@ -101,6 +102,7 @@ public :
    vector<float>   *t_Mu_dxyErr;
    vector<float>   *t_Mu_dz;
    vector<float>   *t_Mu_dzErr;
+   vector<float>   *t_Mu_sip3d;
    vector<float>   *t_Mu_pfRelIso03_all;
    vector<float>   *t_Mu_pfRelIso03_chg;
    vector<float>   *t_Mu_pfRelIso04_all;
@@ -252,6 +254,7 @@ public :
    TBranch        *b_t_El_dxyErr;   //!
    TBranch        *b_t_El_dz;   //!
    TBranch        *b_t_El_dzErr;   //!
+   TBranch        *b_t_El_sip3d;   //!
    TBranch        *b_t_Electron_mvaFall17Iso;
    TBranch        *b_t_Electron_mvaFall17Iso_WP80;   //!
    TBranch        *b_t_Electron_mvaFall17Iso_WP90;   //!
@@ -275,6 +278,7 @@ public :
    TBranch        *b_t_Mu_dxyErr;   //!
    TBranch        *b_t_Mu_dz;   //!
    TBranch        *b_t_Mu_dzErr;   //!
+   TBranch        *b_t_Mu_sip3d;   //!
    TBranch        *b_t_Mu_pfRelIso03_all;   //!
    TBranch        *b_t_Mu_pfRelIso03_chg;   //!
    TBranch        *b_t_Mu_pfRelIso04_all;   //!
@@ -435,6 +439,7 @@ void NtupleVariables::Init(TTree *tree)
    t_El_dxyErr = 0;
    t_El_dz = 0;
    t_El_dzErr = 0;
+   t_El_sip3d = 0;
    t_Electron_mvaFall17Iso=0;
    t_Electron_mvaFall17Iso_WP80 = 0;
    t_Electron_mvaFall17Iso_WP90 = 0;
@@ -458,6 +463,7 @@ void NtupleVariables::Init(TTree *tree)
    t_Mu_dxyErr = 0;
    t_Mu_dz = 0;
    t_Mu_dzErr = 0;
+   t_Mu_sip3d = 0;
    t_Mu_pfRelIso03_all = 0;
    t_Mu_pfRelIso03_chg = 0;
    t_Mu_pfRelIso04_all = 0;
@@ -591,6 +597,7 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_El_dxyErr", &t_El_dxyErr, &b_t_El_dxyErr);
    fChain->SetBranchAddress("t_El_dz", &t_El_dz, &b_t_El_dz);
    fChain->SetBranchAddress("t_El_dzErr", &t_El_dzErr, &b_t_El_dzErr);
+   fChain->SetBranchAddress("t_El_sip3d", &t_El_sip3d, &b_t_El_sip3d);
    fChain->SetBranchAddress("t_Electron_mvaFall17Iso", &t_Electron_mvaFall17Iso, &b_t_Electron_mvaFall17Iso);
    fChain->SetBranchAddress("t_Electron_mvaFall17Iso_WP80", &t_Electron_mvaFall17Iso_WP80, &b_t_Electron_mvaFall17Iso_WP80);
    fChain->SetBranchAddress("t_Electron_mvaFall17Iso_WP90", &t_Electron_mvaFall17Iso_WP90, &b_t_Electron_mvaFall17Iso_WP90);
@@ -614,6 +621,7 @@ void NtupleVariables::Init(TTree *tree)
    fChain->SetBranchAddress("t_Mu_dxyErr", &t_Mu_dxyErr, &b_t_Mu_dxyErr);
    fChain->SetBranchAddress("t_Mu_dz", &t_Mu_dz, &b_t_Mu_dz);
    fChain->SetBranchAddress("t_Mu_dzErr", &t_Mu_dzErr, &b_t_Mu_dzErr);
+   fChain->SetBranchAddress("t_Mu_sip3d", &t_Mu_sip3d, &b_t_Mu_sip3d);
    fChain->SetBranchAddress("t_Mu_pfRelIso03_all", &t_Mu_pfRelIso03_all, &b_t_Mu_pfRelIso03_all);
    fChain->SetBranchAddress("t_Mu_pfRelIso03_chg", &t_Mu_pfRelIso03_chg, &b_t_Mu_pfRelIso03_chg);
    fChain->SetBranchAddress("t_Mu_pfRelIso04_all", &t_Mu_pfRelIso04_all, &b_t_Mu_pfRelIso04_all);

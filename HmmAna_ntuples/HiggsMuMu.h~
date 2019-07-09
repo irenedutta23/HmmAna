@@ -24,7 +24,6 @@
 #include<string>
 #include "TF1.h"
 #include "TAxis.h"
-#include "TGraphErrors.h"
 class HiggsMuMu:public NtupleVariables  {
 public :
 
@@ -38,15 +37,7 @@ public :
   void     GenInfo(const char *, const char *, double);
   void     BookHistogram(const char *);
   void     clearTreeVectors();
-  float    min(float a, float b);
-
-  std::string str_dataset;
-  //nnlops ggH reweighting
-  TGraphErrors* gr_NNLOPSratio_pt_0jet;
-  TGraphErrors* gr_NNLOPSratio_pt_1jet;
-  TGraphErrors* gr_NNLOPSratio_pt_2jet;
-  TGraphErrors* gr_NNLOPSratio_pt_3jet;
-    
+ 
   TFile *oFile;
   TTree *cattree;
 
@@ -123,7 +114,6 @@ public :
     float M_mmjj= -9999.;
     float eta_mmjj=-9999;
     float phi_mmjj= -9999;
-    float pt_mmjj= -9999;
     float Zep = -9999.;
     float dRmin_mj = -9999.;
     float dRmax_mj = -9999.;
@@ -137,8 +127,7 @@ public :
     float subleadingJet_eta = -9999.;
     float dPhijj=-9999.;
     float cthetaCS = -9999.;
-    float PV_ndof=-9999.;
-    float PV_z=-9999.;
+    
     // Pisa BDT vars
     float ll_mass =0.;
     float MqqLog=0.;
@@ -167,7 +156,7 @@ public :
    float dimu_abs_dPhi = 0.;
    float jet1_eta = 0.;
    float jet2_eta = 0.;
-   float pT_mmjj = 0.;
+   float pt_mmjj = 0.;
    float pt_mmj = 0.;
    float m_mmjj = 0.;
    float m_mmj = 0.;
@@ -621,8 +610,10 @@ void HiggsMuMu::BookHistogram(const char *outFileName) {
   cattree->Branch("drmj", &drmj, "drmj/F");
   cattree->Branch("m1ptOverMass", &m1ptOverMass, "m1ptOverMass/F");
   cattree->Branch("m2ptOverMass", &m2ptOverMass, "m2ptOverMass/F");
-  cattree->Branch("pT_mmjj", &pT_mmjj, "pT_mmjj/F");
-  
+    
+  //VBF high mjj
+  cattree->Branch("pt_mmjj", &pt_mmjj, "pt_mmjj/F");
+  cattree->Branch("pt_mmj", &pt_mmj, "pt_mmj/F");
   cattree->Branch("m_mmjj", &m_mmjj, "m_mmjj/F");
   cattree->Branch("m_mmj", &m_mmj, "m_mmj/F");
   cattree->Branch("jet1_pt", &jet1_pt, "jet1_pt/F");
@@ -630,46 +621,6 @@ void HiggsMuMu::BookHistogram(const char *outFileName) {
   cattree->Branch("jet1_qgl", &jet1_qgl, "jet1_qgl/F");
   cattree->Branch("jet2_qgl", &jet2_qgl, "jet2_qgl/F");
 
-  //VBF vars
-  cattree->Branch("pt_mmjj", &pt_mmjj, "pt_mmjj/F");
-  cattree->Branch("softJet5", &softJet5,"softJet5/I");
-  cattree->Branch("MET_pt", &MET_pt, "MET_pt/F");
-  cattree->Branch("dEta_jj", &dEta_jj,"dEta_jj/F");
-  cattree->Branch("M_jj", &M_jj,"M_jj/F");
-  cattree->Branch("pt_jj", &pt_jj,"pt_jj/F");
-  cattree->Branch("eta_jj", &eta_jj,"eta_jj/F");
-  cattree->Branch("phi_jj", &phi_jj,"phi_jj/F");
-  cattree->Branch("M_mmjj", &M_mmjj,"M_mmjj/F");
-  cattree->Branch("pt_mmjj", &pt_mmjj,"pt_mmjj/F");
-  cattree->Branch("eta_mmjj", &eta_mmjj,"eta_mmjj/F");
-  cattree->Branch("phi_mmjj", &phi_mmjj,"phi_mmjj/F");
-  cattree->Branch("Zep", &Zep,"Zep/F");
-  cattree->Branch("dRmin_mj", &dRmin_mj,"dRmin_mj/F");
-  cattree->Branch("dRmax_mj", &dRmax_mj,"dRmax_mj/F");
-  cattree->Branch("dRmin_mmj", &dRmin_mmj,"dRmin_mmj/F");
-  cattree->Branch("dRmax_mmj", &dRmax_mmj,"dRmax_mmj/F");
-  cattree->Branch("leadingJet_pt",&leadingJet_pt,"leadingJet_pt/F");
-  cattree->Branch("subleadingJet_pt",&subleadingJet_pt,"subleadingJet_pt/F");
-  cattree->Branch("leadingJet_eta",&leadingJet_eta,"leadingJet_eta/F");
-  cattree->Branch("subleadingJet_eta",&subleadingJet_eta,"subleadingJet_eta/F");
-  cattree->Branch("leadingJet_qgl",&leadingJet_qgl,"leadingJet_qgl/F");
-  cattree->Branch("subleadingJet_qgl",&subleadingJet_qgl,"subleadingJet_qgl/F");
-  cattree->Branch("dPhijj", &dPhijj,"dPhijj/F");
-  cattree->Branch("cthetaCS",&cthetaCS,"cthetaCS/F");
-  cattree->Branch("PV_ndof",&PV_ndof,"PV_ndof/F");
-  cattree->Branch("PV_z",&PV_z,"PV_z/F");
-  //PISA BDT vars
-  cattree->Branch("ll_mass", &ll_mass,"ll_mass/F");
-  cattree->Branch("MqqLog", &MqqLog,"MqqLog/F");
-  cattree->Branch("mumujj_pt", &mumujj_pt,"mumujj_pt/F");
-  cattree->Branch("DeltaEtaQQ", &DeltaEtaQQ,"DeltaEtaQQ/F"); 
-  cattree->Branch("softActivityEWK_njets5", &softActivityEWK_njets5,"softActivityEWK_njets5/F"); 
-  cattree->Branch("ll_zstar", &ll_zstar,"ll_zstar/F");
-  cattree->Branch("ll_pt", &ll_pt,"ll_pt/F");
-  cattree->Branch("theta2", &theta2,"theta2/F");
-  cattree->Branch("impulsoZ", &impulsoZ,"impulsoZ/F");
-  cattree->Branch("maxAbsEta", &maxAbsEta,"maxAbsEta/F");
-  cattree->Branch("qgl_2qAtanh", &qgl_2qAtanh,"qgl_2qAtanh/F");
 
   h_BDT = new TH1D("h_BDT_2016","BDT_2016",50,-1,1);
   h_diMuon_mass_ggH = new TH1D("h_diMuon_mass_ggH","diMuon_mass_ggH",50,100,150);
@@ -1118,8 +1069,6 @@ void HiggsMuMu::clearTreeVectors(){
    dRJ2Higgs = 0.;
    l1_index->clear();
    l2_index->clear();
-   PV_ndof=-9999.;
-   PV_z=-9999.;
    //pisa BDT vars
     MET_pt = -9999.;
     dEta_jj = -9999.;
@@ -1160,7 +1109,7 @@ void HiggsMuMu::clearTreeVectors(){
    dimu_eta = 0.;
    dimu_abs_dEta = 0.;
    dimu_abs_dPhi = 0.;
-   pT_mmjj = 0.;
+   pt_mmjj = 0.;
    pt_mmj = 0.;
    m_mmjj = 0.;
    m_mmj = 0.;
@@ -1202,18 +1151,6 @@ void HiggsMuMu::clearTreeVectors(){
 
 HiggsMuMu::HiggsMuMu(const TString &inputFileList, const char *outFileName, const char* dataset, const char *isData)
 {
-str_dataset = dataset;
-
-const char* nnlopsfile_path = "data/nnlops/NNLOPS_reweight.root";
-TString ggH_generator = "mcatnlo";
-if(str_dataset.find("powheg")!=std::string::npos) ggH_generator = "powheg";
-std::cout <<"ggH generator is "<<ggH_generator<<endl;
-TFile* nnlopsFile = TFile::Open(nnlopsfile_path);
-gr_NNLOPSratio_pt_0jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_0jet");
-gr_NNLOPSratio_pt_1jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_1jet");
-gr_NNLOPSratio_pt_2jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_2jet");
-gr_NNLOPSratio_pt_3jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_3jet");
-    
 TChain *tree = new TChain("tree");
 
   if( ! FillChain(tree, inputFileList) ) {
@@ -1274,11 +1211,5 @@ Long64_t HiggsMuMu::LoadTree(Long64_t entry)
       // Notify();
    }
    return centry;
-}
-
-float HiggsMuMu::min(float a, float b)
-{
-    if(a<b) return a;
-    else return b;
 }
 #endif // #ifdef HiggsMuMu_cxx
