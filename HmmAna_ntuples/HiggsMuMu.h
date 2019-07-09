@@ -538,7 +538,7 @@ void HiggsMuMu::BookHistogram(const char *outFileName) {
   cattree->Branch("run", &run,"run/i");
   cattree->Branch("lumi", &lumi, "lumi/i");
   cattree->Branch("event", &event,"event/l");
-  cattree->Branch("cat_index", &cat_index, "cat_index/i");
+  cattree->Branch("cat_index", &cat_index, "cat_index/I");
   cattree->Branch("genWeight", &genWeight,"genWeight/F");
   cattree->Branch("genWeight_Up", &genWeight_Up,"genWeight_Up/F");
   cattree->Branch("genWeight_Down", &genWeight_Down,"genWeight_Down/F");
