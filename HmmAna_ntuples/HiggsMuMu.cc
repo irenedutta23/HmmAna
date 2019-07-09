@@ -777,14 +777,13 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
           h_BDT->Fill(BDT_incl,evt_wt);
  
           //ttH
-          if(t_nbJet>0){
-	    //if(*isData=='F')evt_wt*=(*t_bJet_SF)[0];
-              if(el.size()> 0  || mu.size()>0){
+          if(t_nbJet>0 && (el.size()> 0 || mu.size()>0)){
                   cat_index = 1;
                   double binv = catyield->GetBinContent(1);
                   binv = binv + evt_wt;
                   catyield->SetBinContent(1,binv);
                   if(*isData=='F'){
+		     //evt_wt*=(*t_bJet_SF)[0];
                      h_diMuon_mass_ttHLep->Fill(diMuon_mass,evt_wt);
                   }
 		  else{
@@ -807,7 +806,6 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
 		    h_leading_bJet_eta_ttHLep->Fill((*t_bJet_eta)[0],evt_wt);
 		    h_leading_bJet_phi_ttHLep->Fill((*t_bJet_phi)[0],evt_wt);
 		  }
-	      }
 	  }
           else if(t_nbJet>0 && t_nJet>1){
                   cat_index = 2;
@@ -815,6 +813,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
                   binv = binv + evt_wt;
                   catyield->SetBinContent(2,binv);
                   if(*isData=='F'){
+		     //evt_wt*=(*t_bJet_SF)[0];
                      h_diMuon_mass_ttHHad->Fill(diMuon_mass,evt_wt);
                   }
                   else{
