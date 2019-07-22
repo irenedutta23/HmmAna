@@ -24,7 +24,7 @@ OR
 
 ============================================
 
-CONDOR scripts
+CONDOR scripts (not yet adapted to work for three years)
 
 ===========================================
 
