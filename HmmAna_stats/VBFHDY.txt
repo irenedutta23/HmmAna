@@ -1,4 +1,0 @@
-/eos/cms/store/user/nlu/Hmm/ML/ntuples/VBFHToMuMu_2018_NNscore.root
-/eos/cms/store/user/nlu/Hmm/ML/ntuples/DYJetsToLL_VBFfilter_2017_NNscore.root
-/eos/cms/store/user/nlu/Hmm/ML/ntuples/DYJetsToLL_VBFfilter_2016_NNscore.root
-/eos/cms/store/user/nlu/Hmm/ML/ntuples/DYJetsToLL_VBFfilter_2018_NNscore.root
