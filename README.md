@@ -15,16 +15,16 @@ make
 
 To run the code
 
-./analyzeHmm runList.txt out.root mc F
+./analyzeHmm runList.txt out.root mc F 2016
 
 OR 
 
-./analyzeHmm runList.txt out.root data T
+./analyzeHmm runList.txt out.root data T 2016
 
 
 ============================================
 
-CONDOR scripts
+CONDOR scripts (not yet adapted to work for three years)
 
 ===========================================
 

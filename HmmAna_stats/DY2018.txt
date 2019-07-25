@@ -1,1 +1,0 @@
-/eos/cms/store/user/nlu/Hmm/ML/ntuples/DYJetsToLL_VBFfilter_2018_NNscore.root
