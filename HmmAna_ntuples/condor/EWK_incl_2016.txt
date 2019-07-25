@@ -1,0 +1,1 @@
+/storage/user/nlu/Hmm/ntuples/2016/Nano1June2019/Prod_v2/MC/EWK_LLJJ_MLL-50_MJJ-120_13TeV-madgraph-herwigpp_17July_v1/EWK_LLJJ_MLL-50_MJJ-120_13TeV-madgraph-herwigpp_17July_v1_job0.root

@@ -1204,16 +1204,20 @@ HiggsMuMu::HiggsMuMu(const TString &inputFileList, const char *outFileName, cons
 {
 str_dataset = dataset;
 
-const char* nnlopsfile_path = "data/nnlops/NNLOPS_reweight.root";
+const char* nnlopsfile_path = "NNLOPS_reweight.root";
 TString ggH_generator = "mcatnlo";
 if(str_dataset.find("powheg")!=std::string::npos) ggH_generator = "powheg";
 std::cout <<"ggH generator is "<<ggH_generator<<endl;
 TFile* nnlopsFile = TFile::Open(nnlopsfile_path);
+ cout<<"opened nnlops file\n";
 gr_NNLOPSratio_pt_0jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_0jet");
+ cout<<"Got 0\n";
 gr_NNLOPSratio_pt_1jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_1jet");
+ cout<<"Got 1\n";
 gr_NNLOPSratio_pt_2jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_2jet");
+ cout<<"Got 2\n";
 gr_NNLOPSratio_pt_3jet = (TGraphErrors*)nnlopsFile->Get("gr_NNLOPSratio_pt_"+ggH_generator+"_3jet");
-    
+ cout<<"got all tgraphs\n";    
 TChain *tree = new TChain("tree");
 
   if( ! FillChain(tree, inputFileList) ) {

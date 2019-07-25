@@ -1,13 +1,2 @@
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__0.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__1.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__10.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__11.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__12.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__2.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__3.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__4.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__5.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__6.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__7.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__8.root
-/mnt/hadoop//store/user/nlu/Hmm/ntuple/2016/Nano14Dec2018/MC/Prod_v5/jes_nom/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_08June_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8__9.root
+/storage/user/nlu/Hmm/ntuples/2016/Nano1June2019/Prod_v2/MC/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_17July_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_17July_v1_job0.root
+/storage/user/nlu/Hmm/ntuples/2016/Nano1June2019/Prod_v2/MC/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_17July_v1/WWZ_TuneCUETP8M1_13TeV-amcatnlo-pythia8_17July_v1_job1.root
