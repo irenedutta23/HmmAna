@@ -79,9 +79,9 @@ std::pair<double,double> NtupleVariables::CSAngles( TLorentzVector v1, TLorentzV
     TVector3 reco_M2 = v2.Vect().Unit();
     double thetaCS = zAxisCS.Dot((v1.Vect()).Unit());
     double phiCS   = TMath::ATan2((v1.Vect()).Dot(yAxis), (v1.Vect()).Dot(xAxisCS));
-    if(charge<0){
+    if(charge>0){
         thetaCS = zAxisCS.Dot((v2.Vect()).Unit());
         phiCS   = TMath::ATan2((v2.Vect()).Dot(yAxis), (v2.Vect()).Dot(xAxisCS));
     }
-    return std::pair<double,double>(thetaCS,phiCS);
+    return std::pair<double,double>(-thetaCS,-phiCS);
 }
