@@ -21,7 +21,7 @@ import math
 from math import pow
 
 from keras.models import Sequential, Model
-from keras.layers import Dense, Activation,Dropout, Input, BatchNormalization
+from keras.layers import Dense, Activation,Dropout, Input, BatchNormalization, Flatten
 from keras.callbacks import EarlyStopping
 from keras.callbacks import ModelCheckpoint
 
@@ -214,7 +214,8 @@ def output_file(y_pred_cls,y_pred_adv_cls,evt_weight, y_test, z_test,x_test_inde
 
 
 def make_cls_model(inp, b_norm = False, n_hidden = 1, hidden= 100, do = 0.2):
-    i = Input((26,), name='features')
+    #i = Input((26,), name='features')
+    i = inp
     di = i
     for h in range(n_hidden):
         d = Dense(hidden, name='hidden_%d'%h, activation='tanh')(di)
@@ -242,9 +243,11 @@ def fit_cls_model(model,x_train_reduced,y_train, x_train_wt,batch_size = 20, val
 # In[14]:
 
 
-def make_adv_model(b_norm, nlayers_adv=3, nunits_adv=50, activation='elu',do=0.2):
+def make_adv_model(b_norm, nlayers_adv=3, nunits_adv=50, activation='elu',do=0.2, input_size=(1,)):
 
-    i = Input((1,), name='r_input')
+    i = Input(input_size, name='r_input')
+    #flatten the input if need be
+    if len(input_size)>1: i = Flatten()(i)
     di = i
     for h in range(nlayers_adv):
         d = Dense(nunits_adv, name='hidden_%d'%h, activation=activation)(di)
@@ -262,15 +265,22 @@ def make_adv_model(b_norm, nlayers_adv=3, nunits_adv=50, activation='elu',do=0.2
 
 
 def make_cls_adv_model(inp, b_norm, do, nlayers, nlayers_adv,nunits,nunits_adv, lr, alpha, activation):
-    
+
     model_cls = make_cls_model(inp,b_norm,nlayers, nunits, do)  #build the classifier model
+
+    sc = model_cls(inp)
+    feed_on_layer = -1 ## feed on (1,) the discriminator output
+    feed_on_layer = -2 ## feed on (100,) the layer just above
+    layer_to_adv = model_cls.layers[feed_on_layer]    
+    shape_to_adv = layer_to_adv.output_shape[1:]
+    print ("the input shape to the adversary is ",shape_to_adv)
     
-    model_adv = make_adv_model(b_norm,nlayers_adv, nunits_adv, activation,do) #build the regression model
+    model_adv = make_adv_model(b_norm,nlayers_adv, nunits_adv, activation,do, input_size = shape_to_adv) #build the regression model
    
     #Construct a combined model of input (inp) -> classifier (model_cls) -> classifier output (sc) -> regression (model_cls_adv) -> regression output (out)
-   
-    sc = model_cls(inp)
-    out = model_adv(sc)
+    input_for_adv = Model(input = inp,
+          output = layer_to_adv.output)(inp)
+    out = model_adv(input_for_adv)
     
     opt = keras.optimizers.adam(lr=lr)
     model_cls.compile(loss='binary_crossentropy', optimizer=opt,metrics=['accuracy'])
