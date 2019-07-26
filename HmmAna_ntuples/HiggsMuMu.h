@@ -89,6 +89,7 @@ public :
   float BDT_Pisa = -9999.;
   float BDT_2j = -9999.;
   float BDT_01j = -9999.;
+  float BDT_2jm = -9999.;
   float Higgs_mass = -9999.;
   float Higgs_pt = -9999.;
   float Higgs_eta = -9999.;
@@ -584,6 +585,7 @@ void HiggsMuMu::BookHistogram(const char *outFileName) {
   cattree->Branch("BDT_Pisa", &BDT_Pisa,"BDT_Pisa/F");
   cattree->Branch("BDT_2j", &BDT_2j,"BDT_2j/F");
   cattree->Branch("BDT_01j", &BDT_01j,"BDT_01j/F");
+  cattree->Branch("BDT_2jm", &BDT_2jm,"BDT_2jm/F");
   cattree->Branch("Higgs_mass", &Higgs_mass,"Higgs_mass/F");
   cattree->Branch("Higgs_pt", &Higgs_pt,"Higgs_pt/F");
   cattree->Branch("Higgs_eta", &Higgs_eta,"Higgs_eta/F");
@@ -1096,6 +1098,7 @@ void HiggsMuMu::clearTreeVectors(){
    BDT_incl = -9999.;
    BDT_2j = -9999.;
    BDT_01j = -9999.;
+   BDT_2jm = -9999.;
    Higgs_mass = -9999.;
    Higgs_pt = -9999.;
    Higgs_eta = -9999.;
