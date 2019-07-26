@@ -396,6 +396,37 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
    TString weightfile2016 = "f_Opt_v1_all_sig_all_bkg_ge0j_BDTG_UF_v1.weights.xml";
    reader2016->BookMVA( methodName2016, weightfile2016 );
     
+   TMVA::Reader *reader2jm = new TMVA::Reader( "!Color:!Silent" );
+   reader2jm->AddVariable( "hmmpt", &dimu_pt );
+   reader2jm->AddVariable( "hmmrap", &hmmrap );
+   reader2jm->AddVariable( "hmmthetacs", &dtheta );
+   reader2jm->AddVariable( "hmmphics", &dphi );
+   reader2jm->AddVariable( "j1pt", &jet1_pt);
+   reader2jm->AddVariable( "j1eta", &jet1_eta);
+   reader2jm->AddVariable( "j2pt", &jet2_pt);
+   reader2jm->AddVariable( "detajj", &dijet1_abs_dEta);
+   reader2jm->AddVariable( "dphijj", &dphijj);
+   reader2jm->AddVariable( "mjj", &dijet_mass);
+   reader2jm->AddVariable( "met", &MET);
+   reader2jm->AddVariable( "zepen", &zepen);
+   reader2jm->AddVariable( "hmass", &hmass);
+   reader2jm->AddVariable( "njets", &njets);
+   reader2jm->AddVariable( "drmj", &drmj);
+   reader2jm->AddSpectator( "m1ptOverMass", &m1ptOverMass);
+   reader2jm->AddSpectator( "m2ptOverMass", &m2ptOverMass);
+   reader2jm->AddSpectator( "m1eta", &m1eta);
+   reader2jm->AddSpectator( "m2eta", &m2eta);
+   reader2jm->AddSpectator( "hmerr", &hmerr);
+   reader2jm->AddSpectator( "weight", &weight);
+   reader2jm->AddSpectator( "hmass", &hmass);
+   reader2jm->AddSpectator( "nbjets", &nBMed);
+   reader2jm->AddSpectator( "bdtucsd_inclusive", &bdtucsd_inclusive);
+   reader2jm->AddSpectator( "bdtucsd_01jet", &bdtucsd_01jet);
+   reader2jm->AddSpectator( "bdtucsd_2jet", &bdtucsd_2jet);
+   TString methodName2jm = "TMVAClassification_BDTG.weights.2jmet_bveto";
+   TString weightfile2jm = "data/Hmm_BDT_xml/UCSD/2016/TMVAClassification_BDTG.weights.2jet_bveto_withmass.xml";
+   reader2jm->BookMVA( methodName2jm, weightfile2jm );
+	
    cout <<"p7" <<endl;
    TMVA::Reader *reader2j = new TMVA::Reader( "!Color:!Silent" );
    reader2j->AddVariable( "hmmpt", &dimu_pt );
@@ -801,6 +832,7 @@ void HiggsMuMu::Categorization(const char *data,const char *isData, float mlo, f
           BDT_incl = reader2016->EvaluateMVA( methodName2016 );
           BDT_2j = reader2j->EvaluateMVA( methodName2j );
           BDT_01j = reader01j->EvaluateMVA( methodName01j );
+	  BDT_2jm = reader2jm->EvaluateMVA( methodName2jm );
           h_BDT->Fill(BDT_incl,evt_wt);
  
           //ttH
