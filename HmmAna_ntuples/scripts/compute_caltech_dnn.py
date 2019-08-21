@@ -102,7 +102,7 @@ def dnn_variables(leading_muon, subleading_muon, leading_jet, subleading_jet, ns
 
     return ret
 
-def calc_dnn_pred(j1,j2,m1,m2,n_softJet,event_no,j1_qgl,j2_qgl): #j1,j2,m1,m2 are all rt.TLorentzvectors
+def calc_dnn_pred(j1,j2,m1,m2,n_softJet,j1_qgl,j2_qgl): #j1,j2,m1,m2 are all rt.TLorentzvectors
     dnn_vars = dnn_variables(m1,m2,j1,j2,n_sofjet,j1_qgl,j2_qgl)
     varlist_order = ['softJet5', 'dRmm','dEtamm','M_jj','pt_jj','eta_jj','phi_jj','M_mmjj','eta_mmjj','phi_mmjj','dEta_jj','Zep','dRmin_mj', 'dRmax_mj'
                                ,'dRmin_mmj','dRmax_mmj','dPhimm','leadingJet_pt','subleadingJet_pt',
