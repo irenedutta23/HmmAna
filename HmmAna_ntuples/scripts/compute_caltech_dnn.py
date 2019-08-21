@@ -11,10 +11,10 @@ except:
 
 def DeltaPhi(phi1,phi2):
     result = phi1 - phi2
-    while(result > M_PI):  
-        result -= 2 * M_PI
-    while(result <= -M_PI):
-        result += 2 * M_PI
+    while(result > math.pi):  
+        result -= 2 * math.pi
+    while(result <= -math.pi):
+        result += 2 *math.pi
 
     return result
 
